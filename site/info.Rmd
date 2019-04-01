@@ -1,0 +1,38 @@
+---
+title: "Informationen"
+output: html_document
+---
+
+#### Erstellung des Kurses und der Webseite
+
+von [Saskia A. Otto](https://www.biologie.uni-hamburg.de/en/forschung/oekologie-biologische-ressourcen/maroeksysdyn/mitarbeiter/otto-saskia.html)<br>
+Wissenschaftlerin am [Institut für Marine Ökosystem- und Fischereiwissenschaften](https://www.biologie.uni-hamburg.de/einrichtungen/imf.html) der Universität Hamburg<br>
+Blog: [www.marinedatascience.co](https://www.marinedatascience.co)<br>
+<i class="fa fa-github fa-lg"></i>: [saskiaotto](https://github.com/saskiaotto)<br>
+<i class="fab fa-2x fa-researchgate"></i> [ResearchGate link](https://www.researchgate.net/profile/Saskia_Otto)
+
+
+#### Technische Infos
+
+Dieser Bachelorkurs basiert auf dem noch umfangreicheren und auf Englisch angebotenen Masterkurs [Data analysis with R](https://mareds.github.io/r_course/index.html), enthält aber nicht den Themenkomplex der statistischen Modellierung. Der komplette Kurs einschl. der Website wurde in R Markdown erstellt. Die Präsentationen der einzelnen Lektionen basieren auf [slidify](http://slidify.org/index.html).
+
+
+#### Swirlkurs
+
+Der begleitende Swirlkurs wurde im Rahmen des Projektes [R-Lab 2.0](https://rlab.blogs.uni-hamburg.de)
+erstellt, welches im Rahmen des [Lehrlabors](https://www.universitaetskolleg.uni-hamburg.de/universitaetskolleg-2-0/lehrlabor.html) im Universitätskolleg 2.0 aus Mitteln des BMBF (01PL17033) gefördert wurde.
+<br>
+<br>
+Entwicklung der Fragen: Christian Möllmann, [Jan Conradt](https://github.com/JanCo93)<br>
+Programmierung des Kurses mit swirlify: Jan Conradt<br>
+Kursdesign und editing: [Niels Schwab](https://www.geo.uni-hamburg.de/en/geographie/mitarbeiterverzeichnis/schwab.html), Jan Conradt 
+
+<br>
+<br>
+
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png"></a><br>
+Diese Arbeit ist lizenziert unter einer <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"> Creative Commons Namensnennung</a> – Weitergabe unter gleichen Bedingungen 4.0 International Lizenz.<br>
+<br>
+<b>Bild auf der Startseite:</b> Sektion eines Copernicus Sentinel-2A Satellitenbilds welches das Great Barrier Reef zeigt - erstellt von <a href="http://www.esa.int/spaceinimages/Images/2017/06/Great_Barrier_Reef#">ESA</a>, 2. Juni 2017 (unter CC BY-SA 3.0 IGO Lizenz).
+<br>
+

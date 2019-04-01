@@ -1,0 +1,41 @@
+---
+title: "Praktisches"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Lektionen
+
+Die Lektionen werden hier in Kürze als PDF zum Download verfügbar stehen
+
+<br>
+
+# Datensätze
+
+Alle Datensätze können hier als ZIP Datei runtergeladen werden:
+<a href="data_site/bmarsys_kurs_daten.zip">Download ZIP Datei [589 KB]</a>
+
+<br>
+
+# R Pakete
+
+Folgende Pakete sollten auf dem Rechner installiert sein für die Übungen und Demonstrationen in den Lektionen:
+
+- [tidyverse](https://www.rdocumentation.org/packages/tidyverse/versions/1.2.1) (includes already: ggplot2, tibble, tidyr, readr, dplyr, stringr, forcats, purrr)
+- [lubridate](https://www.rdocumentation.org/packages/lubridate/versions/1.7.0)
+- [modelr](https://www.rdocumentation.org/packages/modelr/versions/0.1.1)
+- [RColorBrewer](https://www.rdocumentation.org/packages/RColorBrewer/versions/1.1-2)
+- [ggmap](https://www.rdocumentation.org/packages/ggmap/versions/2.6.1)
+- [grid](https://www.rdocumentation.org/packages/grid/versions/3.4.3)
+- [gridExtra](https://www.rdocumentation.org/packages/gridExtra/versions/2.3)
+
+<br>
+All diese Pakete sind auf der [CRAN](https://cran.r-project.org) Webseite verfügbar und können direkt aus R oder RStudio heraus mit der Funktion `install.packages()` installiert werden:
+```{r, eval=FALSE}
+install.packages(c("tidyverse", "lubridate", "modelr","RColorBrewer", "ggmap", "grid", "gridExtra"),
+    dependencies = TRUE)
+```
+

@@ -1,0 +1,57 @@
+name: MARinE Data Science | Data Analysis with R
+output_dir: "../docs"
+exclude: ["*.html", "*.pdf", "libs"]
+
+navbar:
+  title:
+  type: inverse
+  href: https://www.marinedatascience.co
+  left:
+  - text: B-MARSYS 6
+    icon: fa-home
+    href: index.html
+  - text: Lektionen
+    icon: fa-graduation-cap
+    menu:
+    - text: Programmierung in R
+    - text: 1-Einführung in R und RStudio
+      href: Lektion01_Einführung_in_R.html
+    - text: 2-Datenstrukturen
+      href: Lektion02_Datenstrukturen.html
+    - text: 3-Arbeitsbereich und Operatoren
+      href: Lektion03_Operatoren.html
+    - text: 4-Visualisierung in R
+      href: Lektion04_Einführung_Visualisierung.html
+    - text: 5-R Pakete & Data wrangling-1.Import
+      href: Lektion05_Data_wrangling_Import.html
+    - text: 6-Data wrangling-2.Tidy Daten
+      href: Lektion06_Data_wrangling_tidyr.html
+    - text: 7-Data wrangling-3.Transformation
+      href: Lektion07_Data_wrangling_Transformation.html
+    - text: 8-Grafiken mit ggplot2
+      href: Lektion08_Grafiken_ggplot2.html
+    - text: "---------"
+    - text: "slides, keyboard shortcuts:"
+    - text: "o: outline"
+    - text: "w: widescreen on/off"
+    - text: "f: fullscreen on/off"
+    - text: "ctrl +/ ctrl -: zoom in/out"
+    - text: "p: presenter mode with additional info (NOT in Safari)"
+  - text: Praktisches
+    icon: fa-gear
+    href: practicals.html
+  - text: Weiterführende Literatur
+    icon: fa-newspaper
+    href: misc.html
+  right:
+  - text: Info
+    icon: fa-info-circle
+    href: info.html
+  - text: Kontakt
+    icon: fa-send
+    href: mailto:saskia.otto@uni-hamburg.de
+output:
+  html_document:
+    theme: spacelab
+    highlight: tango
+    css: css_site/style_site.css
