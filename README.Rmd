@@ -1,5 +1,5 @@
 ---
-title: "MAREDS - Data analysis with R"
+title: "B-MARSYS 6: Statistik und Programmierung mit R"
 output:
   github_document
 ---
@@ -17,7 +17,7 @@ knitr::opts_chunk$set(
 
 ## About the course
 
-This is a course taught as part of the curriculum of the Master program [MARSYS-MARine EcoSYStem and Fishery Sciences](https://www.biologie.uni-hamburg.de/en/studium/master/marine-oekosystem-und-fischereiwissenschaften.html) at the [Institute of Marine Ecosystem and Fishery Science (IMF)](https://www.biologie.uni-hamburg.de/en/einrichtungen/imf.html), University of Hamburg, Germany.
+This is a course taught as part of the curriculum of the Bachelor program [B-MARSYS-MARine EcoSYStem and Fishery Sciences](https://www.biologie.uni-hamburg.de/en/studium/bachelor/bachelor-of-science-marsys.html) at the [Institute of Marine Ecosystem and Fishery Science (IMF)](https://www.biologie.uni-hamburg.de/en/einrichtungen/imf.html), University of Hamburg, Germany.
 
 ## About the course website and repo
 
