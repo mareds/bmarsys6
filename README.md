@@ -1,11 +1,11 @@
-B-MARSYS 6: Statistik und Programmierung mit R
+B-MARSYS 6: Statistics and programming with R
 ================
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 About the course
 ----------------
 
-This is a course taught as part of the curriculum of the Bachelor program [B-MARSYS-MARine EcoSYStem and Fishery Sciences](https://www.biologie.uni-hamburg.de/en/studium/bachelor/bachelor-of-science-marsys.html) at the [Institute of Marine Ecosystem and Fishery Science (IMF)](https://www.biologie.uni-hamburg.de/en/einrichtungen/imf.html), University of Hamburg, Germany.
+This is a course taught in German as part of the curriculum of the Bachelor program [B-MARSYS-MARine EcoSYStem and Fishery Sciences](https://www.biologie.uni-hamburg.de/en/studium/bachelor/bachelor-of-science-marsys.html) at the [Institute of Marine Ecosystem and Fishery Science (IMF)](https://www.biologie.uni-hamburg.de/en/einrichtungen/imf.html), University of Hamburg, Germany.
 
 About the course website and repo
 ---------------------------------
