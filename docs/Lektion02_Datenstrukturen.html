@@ -1,0 +1,2631 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Statistik und Programmierung mit R</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Statistik und Programmierung mit R">
+  <meta name="author" content="Saskia Otto &amp; Christian Möllmann">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <!-- the following meta tag added by me (SAO) -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css"
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/sao_theme.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="libraries/widgets/quiz/css/demo.css"></link>
+<link rel=stylesheet href="libraries/widgets/bootstrap/css/bootstrap.css"></link>
+<link rel=stylesheet href="libraries/widgets/interactive/css/aceeditor.css"></link>
+<link rel=stylesheet href="./assets/css/box_styles.css"></link>
+<link rel=stylesheet href="./assets/css/ribbons.css"></link>
+<link rel=stylesheet href="./assets/css/style.css"></link>
+
+
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script>
+  <script data-main="libraries/frameworks/io2012/js/slides"
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+
+    <!-- LOGO SLIDE -->
+      <slide class="nobackground">
+    <article class="flexbox vcenter">
+      <span>
+        <img width='500px' src="assets/img/BigLogo_MDS.png">
+      </span>
+    </article>
+  </slide>
+    <slide class="title-slide segue nobackground">
+  <!-- <aside class="gdbar">
+    <img src="assets/img/uham_logo.png">
+  </aside>-->
+  <div style="position: absolute; left: 50px; top: 50px; z-index:100">
+      <img src = "assets/img/uham_logo.png" height="67" width="200">
+  </div>
+  <hgroup class="auto-fadein">
+    <h1 style="width: 650px;">Statistik und Programmierung mit R</h1>
+    <h2>2 - Datenstrukturen</h2>
+    <p>Saskia Otto &amp; Christian Möllmann<br/>B-MARSYS 6, SoSe2019</p>
+  </hgroup>
+  <article></article>
+</slide>
+
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Datenstrukturen</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Die Datenstrukturen in R lassen sich einteilen in ihre <strong>Dimensionalität</strong> (1d, 2d, or nd) und <strong>Homogenität</strong> ihrer Datentypen. <strong>Fünf</strong> Datentypen lassen sich damit unterscheiden: </p>
+
+<table><thead>
+<tr>
+<th align="center">Dimensions</th>
+<th align="center">Homogeneous</th>
+<th align="center">Heterogeneous</th>
+</tr>
+</thead><tbody>
+<tr>
+<td align="center">1d</td>
+<td align="center"><strong>Atomic vector</strong></td>
+<td align="center"><strong>List</strong></td>
+</tr>
+<tr>
+<td align="center">2d</td>
+<td align="center">Matrix</td>
+<td align="center"><strong>Data frame</strong></td>
+</tr>
+<tr>
+<td align="center">nd</td>
+<td align="center">Array</td>
+<td align="center"></td>
+</tr>
+</tbody></table>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="segue" style="background:#1874CD;">
+  <hgroup>
+    <h1>The einfachste Sruktur: atomare Vektoren</h1>
+  </hgroup>
+  <article>
+    <p><img src="img/Data_science_1a.png" style="height:150px;border:0;position: absolute; left: 900px; top: 50px" </img> </p>
+
+  </article>
+</slide>
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>Atomare Vektoren</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>werden mit <code>c()</code> genieriert (kurz für <strong>combine</strong>):</li>
+</ul>
+
+<pre><code class="r">dbl_var &lt;- c(1, 2.5, 4.5)
+# Verwende TRUE und FALSE (oder T und F) um logische Vektoren zu erstellen
+log_var &lt;- c(TRUE, FALSE, T, F)
+chr_var &lt;- c(&quot;these are&quot;, &quot;some strings&quot;)
+</code></pre>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Atomare Vektoren</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>werden mit <code>c()</code> genieriert (kurz for <strong>combine</strong>):</li>
+</ul>
+
+<pre><code class="r">dbl_var &lt;- c(1, 2.5, 4.5)
+# Verwende TRUE und FALSE (oder T und F) um logische Vektoren zu erstellen
+log_var &lt;- c(TRUE, FALSE, T, F)
+chr_var &lt;- c(&quot;these are&quot;, &quot;some strings&quot;)
+</code></pre>
+
+<div style='float:left;width:48%;'>
+  <ul>
+<li>oder mit <code>seq()</code> (= <strong>sequence</strong>) </li>
+</ul>
+
+<pre><code class="r">seq(from = 0, to = 1, by = 0.2)
+</code></pre>
+
+<pre><code class="no-highlight">## [1] 0.0 0.2 0.4 0.6 0.8 1.0
+</code></pre>
+
+</div>
+<div style='float:right;width:48%;'>
+  <ul>
+<li>oder <code>rep()</code>(= <strong>repeat</strong>)</li>
+</ul>
+
+<pre><code class="r">rep(&quot;a&quot;, times = 5)
+</code></pre>
+
+<pre><code class="no-highlight">## [1] &quot;a&quot; &quot;a&quot; &quot;a&quot; &quot;a&quot; &quot;a&quot;
+</code></pre>
+
+</div>
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-5" style="background:;">
+  <hgroup>
+    <h2>Atomare Vektoren</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>sind <strong>immer flach</strong>, auch wenn man <code>c()</code> verschachtelt:</li>
+</ul>
+
+<pre><code class="r">c(1, c(2, c(3, 4)))
+</code></pre>
+
+<pre><code class="no-highlight">## [1] 1 2 3 4
+</code></pre>
+
+<pre><code class="r"># das gleiche wie
+c(1, 2, 3, 4)
+</code></pre>
+
+<pre><code class="no-highlight">## [1] 1 2 3 4
+</code></pre>
+
+<ul>
+<li>haben eine bestimmte Länge die mit <code>length()</code> ermittelt werden kann:</li>
+</ul>
+
+<pre><code class="r">x &lt;- c(200, 50, 40, 1, 100, 20)
+length(x)
+</code></pre>
+
+<pre><code class="no-highlight">## [1] 6
+</code></pre>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-6">
+  <hgroup>
+    <h2>Hierarchie von Datentypen in atomaren Vektoren</h2>
+  </hgroup>
+  <article class = 'flexbox vcenter'>
+    <p><img src="img/Hierarchy_data_types_in_vectors.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" width="300px" style="display: block; margin: auto;" /></p>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-7" style="background:;">
+  <hgroup>
+    <h2>Wichtige tools zum Arbeiten mit Vektoren</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li><p>Datentypumwandlung (&#39;coercion&#39;)</p></li>
+<li><p>Handling von Vektoren unterschiedlicher Länge</p></li>
+<li><p>Namen für Elemente in Vektoren</p></li>
+<li><p>Extrahieren von Elemente bzw. Induzieren von Vektoren</p></li>
+</ol>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-8" style="background:;">
+  <hgroup>
+    <h2>1. Coercion</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Alle Elemente eines atomaren Vektors müssen <strong>den gleichen</strong> Datentypen haben.</li>
+<li><strong>Unterschiedliche Typen</strong> werden &#39;zwangsungewandelt (<strong>coerced</strong>) und zwar zum flexibleren Typen.</li>
+<li>Flexibilität (von gering zu hoch):
+
+<ul>
+<li>logical &lt; integer &lt;  double &lt; character</li>
+</ul></li>
+</ul>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-9" style="background:;">
+  <hgroup>
+    <h2>1. Coercion</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Alle Elemente eines atomaren Vektors müssen <strong>den gleichen</strong> Datentypen haben.</li>
+<li><strong>Unterschiedliche Typen</strong> werden &#39;zwangsungewandelt (<strong>coerced</strong>) und zwar zum flexibleren Typen.</li>
+<li>Flexibilität (von gering zu hoch):
+
+<ul>
+<li>logical &lt; integer &lt;  double &lt; character</li>
+</ul></li>
+</ul>
+
+<p><br><br>
+character und integer wird zu character:</p>
+
+<pre><code class="r">str(c(&quot;a&quot;, 1))
+</code></pre>
+
+<pre><code class="no-highlight">##  chr [1:2] &quot;a&quot; &quot;1&quot;
+</code></pre>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-10" style="background:;">
+  <hgroup>
+    <h2>1. Coercion (Forts.s)</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Wenn logische Elemente zu integer oder double umgewandelt werden, wird jedes <code>TRUE</code> zu einer 1 und <code>FALSE</code> wird zu 0. Dies kann sehr nützlich bei Berechnungen mit <code>sum()</code> und <code>mean()</code> sein:</p>
+
+<pre><code class="r">x &lt;- c(FALSE, FALSE, TRUE)
+as.numeric(x)
+</code></pre>
+
+<pre><code class="no-highlight">## [1] 0 0 1
+</code></pre>
+
+<pre><code class="r"># Total number of TRUEs
+sum(x)
+</code></pre>
+
+<pre><code class="no-highlight">## [1] 1
+</code></pre>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="segue" style="background:#EEC900;">
+  <hgroup>
+    <h1>Your turn...</h1>
+  </hgroup>
+  <article>
+    
+  </article>
+</slide>
+<slide class="" id="slide-12" style="background:#EEC900;">
+  <hgroup>
+    <h1>Quiz 1: Coercion Regeln</h1>
+  </hgroup>
+  <article data-timings="">
+    
+<div class="quiz quiz-single well ">
+  <p>Teste Dein Verständnis und sage den richtigen Output voraus:</p>
+
+<p><code>c(1, FALSE)</code></p>
+
+<ol>
+<li>logischer Vektor</li>
+<li>integer Vektor</li>
+<li><em>double Vektor</em></li>
+<li>character Vektor</li>
+<li>NA</li>
+<li>Fehlermeldung</li>
+</ol>
+
+  <button class="quiz-submit btn btn-primary">Submit</button>
+  <button class="quiz-toggle-hint btn btn-info">Show Hint</button>
+  <button class="quiz-show-answer btn btn-success">Show Answer</button>
+  <button class="quiz-clear btn btn-danger">Clear</button>
+  
+  <div class="quiz-explanation">
+  <p>Die unendliche Menge an Zahlen kann nicht einfach in 2 Zustände umgewandelt werden während TRUE oder FALSE recht einfach in 2 Zahlen 1 und 0 umgewandelt werden können. Da hier die Zahl 1 nicht explizit als integer deklariert ist, wird TRUE zum Typ double umgewandelt.s</p>
+
+</div>
+</div>
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-13" style="background:#EEC900;">
+  <hgroup>
+    <h1>Quiz 2: Coercion Regeln</h1>
+  </hgroup>
+  <article data-timings="">
+    
+<div class="quiz quiz-single well ">
+  <p>Teste Dein Verständnis und sage den richtigen output voraus:</p>
+
+<p><code>c(&quot;a&quot;, 1)</code></p>
+
+<ol>
+<li>logischer Vektor</li>
+<li>integer Vektor</li>
+<li>double Vektor</li>
+<li><em>character Vektor</em></li>
+<li>NA</li>
+<li>Fehlermeldung</li>
+</ol>
+
+  <button class="quiz-submit btn btn-primary">Submit</button>
+  <button class="quiz-toggle-hint btn btn-info">Show Hint</button>
+  <button class="quiz-show-answer btn btn-success">Show Answer</button>
+  <button class="quiz-clear btn btn-danger">Clear</button>
+  
+  <div class="quiz-explanation">
+  <p>Eine Zeichenkette (in diesem Fall &quot;a&quot;) hat keine korrespondierende Zahl in die es umgewandelt werden kann. Dageen kann eine Zahl einfach in eine Zeichenkette umgewandelt werden.</p>
+
+</div>
+</div>
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-14" style="background:#EEC900;">
+  <hgroup>
+    <h1>Quiz 3: Coercion Regeln</h1>
+  </hgroup>
+  <article data-timings="">
+    
+<div class="quiz quiz-single well ">
+  <p>Teste Dein Verständnis und sage den richtigen output voraus:</p>
+
+<p><code>c(TRUE, 1L)</code></p>
+
+<ol>
+<li>logischer Vektor</li>
+<li><em>integer Vektor</em></li>
+<li>double Vektor</li>
+<li>character Vektor</li>
+<li>NA</li>
+<li>Fehlermeldung</li>
+</ol>
+
+  <button class="quiz-submit btn btn-primary">Submit</button>
+  <button class="quiz-toggle-hint btn btn-info">Show Hint</button>
+  <button class="quiz-show-answer btn btn-success">Show Answer</button>
+  <button class="quiz-clear btn btn-danger">Clear</button>
+  
+  <div class="quiz-explanation">
+  <p>In diesem Fall ist 1 klar als integer definiert, daher wird das TRUE zum integer  umgewandelt.</p>
+
+</div>
+</div>
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-15" style="background:#EEC900;">
+  <hgroup>
+    <h1>Quiz 4: Coercion Regeln</h1>
+  </hgroup>
+  <article data-timings="">
+    
+<div class="quiz-text quiz-multitext well">
+  <p><code>x &lt;- c(TRUE, FALSE, TRUE, FALSE, FALSE, TRUE, FALSE, TRUE, TRUE, FALSE)</code></p>
+
+<ol>
+<li>Was ist die Summe von allen Elementen in <code>x</code>?</li>
+</ol>
+
+  <button class="quiz-submit btn btn-primary">Submit</button>
+  <button class="quiz-toggle-hint btn btn-info">Show Hint</button>
+  <button class="quiz-show-answer btn btn-success">Show Answer</button>
+  <button class="quiz-clear btn btn-danger">Clear</button>
+  
+  <div class="quiz-hint">
+  <p><small>Alle TRUEs werden zu 1 umgewandelt und alle FALSEs zu 0.</small></p>
+
+</div>
+<div class="quiz-explanation">
+  <p>Summiere einfach den Vektor mit der <code>sum</code> Funktion: <code>sum(x)</code></p>
+
+<ol>
+<li><span class='answer'>5</span></li>
+</ol>
+
+</div>
+</div>
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-16" style="background:#EEC900;">
+  <hgroup>
+    <h1>Quiz 5 - Challenge: Coercion Regeln</h1>
+  </hgroup>
+  <article data-timings="">
+    
+<div class="quiz-text quiz-multitext well">
+  <p>Schreibe folgenden Code in die Konsole (oder in ein Skript was Du dann ausführst), welcher einen langen Vektor mit einer zufälligen Anzahl an NAs generiert.</p>
+
+<pre><code class="r">x &lt;- 1:10000 
+set.seed(123) # so we get all the same results
+y &lt;- sample(1:10000, 1) # random number of NAs
+z &lt;- sample(1:10000, y) # randomly assign positions of the y NAs
+x[z] &lt;- NA  # place NAs on the positions in z
+</code></pre>
+
+<ol>
+<li>Wieviele <code>NA</code>s gibt es in <code>x</code>?</li>
+</ol>
+
+  <button class="quiz-submit btn btn-primary">Submit</button>
+  <button class="quiz-toggle-hint btn btn-info">Show Hint</button>
+  <button class="quiz-show-answer btn btn-success">Show Answer</button>
+  <button class="quiz-clear btn btn-danger">Clear</button>
+  
+  <div class="quiz-hint">
+  <p><small>Nutze die <code>is.na()</code> Funktion, welche einen logischen Vektor ausgibt, welchen man dann aufsummieren kann.</small></p>
+
+</div>
+<div class="quiz-explanation">
+  <p>Die Summe aller NAs kann mit <code>sum(is.na(x))</code> ermittelt werden.</p>
+
+<ol>
+<li><span class='answer'>2876</span></li>
+</ol>
+
+</div>
+</div>
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-17" style="background:;">
+  <hgroup>
+    <h2>2. Recycling Regel</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Ähnlich wie die implizierte Datentyp-Umwandlung führt R auch eine implizierte Verlängerung von Vektoren bei Operationen mit 2 Vektoren durch: der <strong>kürzere Vektor</strong>auf die gleiche Länge des längeren Vektors <strong>verlängert</strong>, indem die Lücke mit den bereits vorhandenen Elementen gefüllt wird.</p>
+
+<pre><code class="r">1:10 + 100
+</code></pre>
+
+<pre><code class="no-highlight">##  [1] 101 102 103 104 105 106 107 108 109 110
+</code></pre>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-18" style="background:;">
+  <hgroup>
+    <h2>2. Recycling Regel</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Ähnlich wie die implizierte Datentyp-Umwandlung führt R auch eine implizierte Verlängerung von Vektoren bei Operationen mit 2 Vektoren durch: der <strong>kürzere Vektor</strong>auf die gleiche Länge des längeren Vektors <strong>verlängert</strong>, indem die Lücke mit den bereits vorhandenen Elementen gefüllt wird.</p>
+
+<pre><code class="r">1:10 + 100
+</code></pre>
+
+<pre><code class="no-highlight">##  [1] 101 102 103 104 105 106 107 108 109 110
+</code></pre>
+
+<pre><code class="r"># Was passiert hier?
+1:10 + 1:2
+</code></pre>
+
+<pre><code class="no-highlight">##  [1]  2  4  4  6  6  8  8 10 10 12
+</code></pre>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="segue" style="background:#EEC900;">
+  <hgroup>
+    <h1>Aufgabe</h1>
+  </hgroup>
+  <article>
+    
+  </article>
+</slide>
+<slide class="" id="slide-20" style="background:#EEC900;">
+  <hgroup>
+    <h1>Quiz 6: Recycling Regeln</h1>
+  </hgroup>
+  <article data-timings="">
+    
+<div class="quiz quiz-single well ">
+  <p>Was passiert bei folgender Berechnung?</p>
+
+<pre><code class="r">a &lt;- c(10, 5, 100)
+b &lt;- 1:5
+(a*b)*3
+</code></pre>
+
+<ol>
+<li>Der Output ist ein Vektor der Länge 1</li>
+<li>Der Output ist ein Vektor der Länge 3, das letzte Element ist 900</li>
+<li><em>Der Output ist ein Vektor der Länge 5, das letzte Element ist 75</em></li>
+<li>Der Output ist ein Vektor der Länge 5, das letzte Element ist NA</li>
+</ol>
+
+  <button class="quiz-submit btn btn-primary">Submit</button>
+  <button class="quiz-toggle-hint btn btn-info">Show Hint</button>
+  <button class="quiz-show-answer btn btn-success">Show Answer</button>
+  <button class="quiz-clear btn btn-danger">Clear</button>
+  
+  <div class="quiz-explanation">
+  <p>R füllt die Lücke der kürzeren Vektoren mit den existierenden Elementen auf: Position 4 in <strong>a</strong> erhält das 1. Element, die Position 5 das 2. Element. Und die <3> wird auch auf die Länge von <strong>b</strong> verlängert in dem sie 5 mal wiederholt wird.</p>
+
+</div>
+</div>
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-21" style="background:;">
+  <hgroup>
+    <h2>3. Vektorelemente benennen</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Alle Elemente in Vektoren können Namen erhalten. Entweder beim Erstellen mit <code>c()</code>:</p>
+
+<pre><code class="r">c(a = 1, b = 2, c = 4)
+</code></pre>
+
+<pre><code class="no-highlight">## a b c 
+## 1 2 4
+</code></pre>
+
+<p>Oder <strong>anschließend</strong> mit der Funktion <code>names()</code></p>
+
+<pre><code class="r">x &lt;- c(1,5,3)
+names(x) &lt;- c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;)
+x 
+</code></pre>
+
+<pre><code class="no-highlight">## a b c 
+## 1 5 3
+</code></pre>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-22" style="background:;">
+  <hgroup>
+    <h2>4. Induzieren</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><code>[</code> ist die subsetting Funktion und wird folgendermaßen aufgerufen: <code>x[a]</code>.</p>
+
+<p>Es gibt 4 Arten einen Vektor zu induzieren:</p>
+
+<ol>
+<li>Mittels <strong>numerischem</strong> Vektor der integers enthält und die Position angibt</li>
+<li>Mittels <strong>logischem</strong> Vektor </li>
+<li>Mittels Vektor<strong>namen</strong> --&gt; ungewöhnlich</li>
+<li><strong>Nichts</strong> angeben (eckige Klammern sind leer)  --&gt; ungewöhnlich</li>
+</ol>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-23" style="background:;">
+  <article data-timings="">
+    <p>1.Mittels <strong>numerischem</strong> Vektor der integers enthält und die Position angibt</p>
+
+<pre><code class="r">x &lt;- c(&quot;one&quot;, &quot;two&quot;, &quot;three&quot;, &quot;four&quot;, &quot;five&quot;)
+# Positive integers wählen die entsprechenden Elemente aus
+x[c(5, 1, 3)]
+</code></pre>
+
+<pre><code class="no-highlight">## [1] &quot;five&quot;  &quot;one&quot;   &quot;three&quot;
+</code></pre>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-24" style="background:;">
+  <article data-timings="">
+    <p>1.Mittels <strong>numerischem</strong> Vektor der integers enthält und die Position angibt</p>
+
+<pre><code class="r">x &lt;- c(&quot;one&quot;, &quot;two&quot;, &quot;three&quot;, &quot;four&quot;, &quot;five&quot;)
+# Positive integers wählen die entsprechenden Elemente aus
+x[c(5, 1, 3)]
+</code></pre>
+
+<pre><code class="no-highlight">## [1] &quot;five&quot;  &quot;one&quot;   &quot;three&quot;
+</code></pre>
+
+<pre><code class="r"># Sich wiederholende integers verlängern den Vektor:
+x[c(1,1,1,1,2,2,2,2,3,3,3,4,4,5,5)]
+</code></pre>
+
+<pre><code class="no-highlight">##  [1] &quot;one&quot;   &quot;one&quot;   &quot;one&quot;   &quot;one&quot;   &quot;two&quot;   &quot;two&quot;   &quot;two&quot;   &quot;two&quot;  
+##  [9] &quot;three&quot; &quot;three&quot; &quot;three&quot; &quot;four&quot;  &quot;four&quot;  &quot;five&quot;  &quot;five&quot;
+</code></pre>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-25" style="background:;">
+  <article data-timings="">
+    <p>1.Mittels <strong>numerischem</strong> Vektor der integers enthält und die Position angibt</p>
+
+<pre><code class="r">x &lt;- c(&quot;one&quot;, &quot;two&quot;, &quot;three&quot;, &quot;four&quot;, &quot;five&quot;)
+# Positive integers wählen die entsprechenden Elemente aus
+x[c(5, 1, 3)]
+</code></pre>
+
+<pre><code class="no-highlight">## [1] &quot;five&quot;  &quot;one&quot;   &quot;three&quot;
+</code></pre>
+
+<pre><code class="r"># Sich wiederholende integers verlängern den Vektor:
+x[c(1,1,1,1,2,2,2,2,3,3,3,4,4,5,5)]
+</code></pre>
+
+<pre><code class="no-highlight">##  [1] &quot;one&quot;   &quot;one&quot;   &quot;one&quot;   &quot;one&quot;   &quot;two&quot;   &quot;two&quot;   &quot;two&quot;   &quot;two&quot;  
+##  [9] &quot;three&quot; &quot;three&quot; &quot;three&quot; &quot;four&quot;  &quot;four&quot;  &quot;five&quot;  &quot;five&quot;
+</code></pre>
+
+<pre><code class="r"># Negative integers entfernen Elemente:
+x[c(-3,-5)]
+</code></pre>
+
+<pre><code class="no-highlight">## [1] &quot;one&quot;  &quot;two&quot;  &quot;four&quot;
+</code></pre>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-26" style="background:;">
+  <article data-timings="">
+    <p>1.Mittels <strong>numerischem</strong> Vektor der integers enthält und die Position angibt</p>
+
+<pre><code class="r"># Positive und negative integers lassen sich nicht kombinieren:
+# x[c(1,2,-5)] # --&gt; gibt Fehlermeldung
+
+# Beim Verwenden der Null:
+x[0] # --&gt; gibt leeren Vektor wider
+</code></pre>
+
+<pre><code class="no-highlight">## character(0)
+</code></pre>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-27" style="background:;">
+  <article data-timings="">
+    <ol>
+<li>Mittels <strong>logischem</strong> Vektor: alle Elemente mit einem korrespondierenden <code>TRUE</code> werden ausgewählt. Diese Art wird meist in Kombination mit Operationen und vergleichenden Funktionen genutzt.</li>
+</ol>
+
+<pre><code class="r">x &lt;- c(10, 3, NA, 5, 8, 1, NA)
+
+# Alle Elemente von x die keine NAs enthalten
+b &lt;- is.na(x)
+x[!b]  # Das Ausrufungszeichen ! kehrt die TRUE/FALSE Werte um
+</code></pre>
+
+<pre><code class="no-highlight">## [1] 10  3  5  8  1
+</code></pre>
+
+<pre><code class="r"># Alle geraden (oderr nicht fehlenden!) Werte von x
+x[x %% 2 == 0]
+</code></pre>
+
+<pre><code class="no-highlight">## [1] 10 NA  8 NA
+</code></pre>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="segue" style="background:#EEC900;">
+  <hgroup>
+    <h1>Aufgabe</h1>
+  </hgroup>
+  <article>
+    
+  </article>
+</slide>
+<slide class="" id="slide-29" style="background:#EEC900;">
+  <hgroup>
+    <h1>Quiz 7: Subsetting</h1>
+  </hgroup>
+  <article data-timings="">
+    
+<div class="quiz-text quiz-multitext well">
+  <p>Ein Vektor <strong>x</strong> enthält 20 zufällige Zahlen im Bereich 1 - 1000:</p>
+
+<pre><code class="r">set.seed(1) # (= state of the Random Number Generator set to 1)
+x &lt;- sample(1:1000, 20) 
+</code></pre>
+
+<p>Lasse den Code in Deiner eigenen Konsole laufen und beantworte folgende 3 Fragen:</p>
+
+<ol>
+<li>Welche Zahl enthält das 5. Element in <strong>x</strong>?<br></li>
+<li>Was ist die Summe aus den ersten 4 Elementen?</li>
+<li>Was ist die Summe von <strong>x</strong> wenn das 3. und 15. Element ausgeschlossen werden?</li>
+</ol>
+
+  <button class="quiz-submit btn btn-primary">Submit</button>
+  <button class="quiz-toggle-hint btn btn-info">Show Hint</button>
+  <button class="quiz-show-answer btn btn-success">Show Answer</button>
+  <button class="quiz-clear btn btn-danger">Clear</button>
+  
+  <div class="quiz-explanation">
+  <p>1.<code>x[5]</code><br>
+2.Summiere über die ersten 4 Elemente:<br>
+<code>sum(x[1:4])</code>oder <code>sum(x[c(1,2,3,4)])</code><br>
+3.Entferne Element 3 und 15 vor der Summenbildung: 
+<code>sum(x[c(-3, -15)])</code></p>
+
+<ol>
+<li><span class='answer'>201</span></li>
+<li><span class='answer'>2116</span></li>
+<li><span class='answer'>9672</span></li>
+</ol>
+
+</div>
+</div>
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-30" style="background:#EEC900;">
+  <hgroup>
+    <h1>Quiz 8: Subsetting</h1>
+  </hgroup>
+  <article data-timings="">
+    
+<div class="quiz quiz-single well ">
+  <p>Was passiert wenn mit einer positiven integer Zahl induziert wird, die höher ist als die Länge des Vektors?</p>
+
+<ol>
+<li>Fehlermeldung</li>
+<li>Nichts</li>
+<li>Der Vektor wird recycled (z.B. wird das 2. Element bei einem Vektor der Länge 10 ausgegeben wenn der Index 12 ist)</li>
+<li><em>NA wird zurückgegeben</em></li>
+</ol>
+
+  <button class="quiz-submit btn btn-primary">Submit</button>
+  <button class="quiz-toggle-hint btn btn-info">Show Hint</button>
+  <button class="quiz-show-answer btn btn-success">Show Answer</button>
+  <button class="quiz-clear btn btn-danger">Clear</button>
+  
+  <div class="quiz-explanation">
+  <p>Der Vektor wird tatsächlich recycled aber die Lücke wird mit NAs aufgefüllt.</p>
+
+</div>
+</div>
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="segue" style="background:#1874CD;">
+  <hgroup>
+    <h1>Vektorisierte Operationen in R</h1>
+  </hgroup>
+  <article>
+    <p><img src="img/Data_science_1a.png" style="height:150px;border:0;position: absolute; left: 900px; top: 50px" </img> </p>
+
+  </article>
+</slide>
+<slide class="" id="slide-32" style="background:;">
+  <hgroup>
+    <h2>Einfache Berechnungen</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">a &lt;- c(1,2,3,4)
+c &lt;- (a + sqrt(a))/(exp(2)+1)
+c
+</code></pre>
+
+<pre><code class="no-highlight">## [1] 0.2384058 0.4069842 0.5640743 0.7152175
+</code></pre>
+
+<h3>Warum 4 Werte???</h3>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-33" style="background:;">
+  <hgroup>
+    <h2>Vektorisierte Berechnungen</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Berechnungen in R sind vektorisiert, d.h. die Berechnung wird auf <strong>jedes einzelne Element</strong> des Vektors angewendet.</p>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-34" style="background:;">
+  <hgroup>
+    <h2>Vektorisierte Berechnungen</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Berechnungen in R sind vektorisiert, d.h. die Berechnung wird auf <strong>jedes einzelne Element</strong> des Vektors angewendet.</p>
+
+<h3>Rate</h3>
+
+<pre><code class="r">a &lt;- c(1,2,3,4)
+b &lt;- 10
+</code></pre>
+
+<pre><code class="r">a + b 
+a * b 
+</code></pre>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-35" style="background:;">
+  <hgroup>
+    <h2>Vektorisierte Berechnungen</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Berechnungen in R sind vektorisiert, d.h. die Berechnung wird auf <strong>jedes einzelne Element</strong> des Vektors angewendet.</p>
+
+<h3>Rate</h3>
+
+<pre><code class="r">a &lt;- c(1,2,3,4)
+b &lt;- 10 # b wird auf die Länge von a verlängert
+</code></pre>
+
+<pre><code class="r">a + b # = a[1] + b[1], a[2] + b[&quot;2&quot;], a[3] + b[&quot;3&quot;], a[4] + b[&quot;4&quot;]
+</code></pre>
+
+<pre><code class="no-highlight">## [1] 11 12 13 14
+</code></pre>
+
+<pre><code class="r">a * b # = a[1] * b[1], ...
+</code></pre>
+
+<pre><code class="no-highlight">## [1] 10 20 30 40
+</code></pre>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="segue" style="background:#1874CD;">
+  <hgroup>
+    <h1>Listen</h1>
+  </hgroup>
+  <article>
+    <p><img src="img/Data_science_1a.png" style="height:150px;border:0;position: absolute; left: 900px; top: 50px" </img> </p>
+
+  </article>
+</slide>
+<slide class="" id="slide-37" style="background:;">
+  <hgroup>
+    <h2>Lists</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Sind anders als atomare Vektoren weil ihre Elemente <strong>unterschiedliche Datentypen</strong> und auch <strong>Datenstrukturen</strong> haben dürfen.</li>
+<li>Werden mit <code>list()</code> anstelle von <code>c()</code> erstellt</li>
+</ul>
+
+<pre><code class="r">x &lt;- list(1:3, &quot;a&quot;, c(TRUE, FALSE, TRUE), c(2.3, 5.9))
+str(x)
+</code></pre>
+
+<pre><code class="no-highlight">## List of 4
+##  $ : int [1:3] 1 2 3
+##  $ : chr &quot;a&quot;
+##  $ : logi [1:3] TRUE FALSE TRUE
+##  $ : num [1:2] 2.3 5.9
+</code></pre>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-38" style="background:;">
+  <hgroup>
+    <h2>Listen sind Vektoren</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="img/Hierarchy_vectors.png" title="plot of chunk unnamed-chunk-30" alt="plot of chunk unnamed-chunk-30" width="450px" style="display: block; margin: auto;" /></p>
+
+<ul>
+<li><code>NULL</code> steht für die Abwesenheit eines Vektors (im Gegensatz zu <code>NA</code> was sich auf die Elemente in einem Vektor bezieht)</li>
+<li><code>NULL</code> verhält sich typischerweise wie ein Vektor der Länge 0. </li>
+</ul>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-39" style="background:;">
+  <hgroup>
+    <h2>Warum wird eine Liste als Vektor betrachtet?</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="img/ListsVsAtomicVectors.png" title="plot of chunk unnamed-chunk-31" alt="plot of chunk unnamed-chunk-31" width="900px" style="display: block; margin: auto;" /></p>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-40" style="background:;">
+  <hgroup>
+    <h2>Listen (Forts.)</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Werden manchmal <strong>rekursive Vektoren</strong> bzeichnet weil eine Liste weitere Listen enthalen kann. </li>
+</ul>
+
+<pre><code class="r">x &lt;- list(list(list(list())))
+str(x)
+</code></pre>
+
+<pre><code class="no-highlight">## List of 1
+##  $ :List of 1
+##   ..$ :List of 1
+##   .. ..$ : list()
+</code></pre>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-41" style="background:;">
+  <hgroup>
+    <h2>Visualisierung folgender Listen</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">x1 &lt;- list(c(1, 2), c(3, 4))
+x2 &lt;- list(list(1, 2), list(3, 4))
+x3 &lt;- list(1, list(2, list(3)))
+</code></pre>
+
+<div class="img-with-text" style="position: absolute; left: 150px; top: 275px">
+    <img src="img/List_hierarchies.png" alt="" width=650px/>
+ <p><span class="source-img" style = "float:right">source: 
+    <a href='http://r4ds.had.co.nz/lists.html' title=''>R for Data Science</a> by Wickam & Grolemund, 2017 (licensed under <a href='https://creativecommons.org/licenses/by-nc-nd/3.0/us/' title=''>CC-BY-NC-ND 3.0 US</a>)</span></p>
+</div>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-42" style="background:;">
+  <hgroup>
+    <h2>Listenstruktur</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Eine nützliche Funktion zum Anzeigen der Struktur ist <code>str()</code>:</p>
+
+<div style='float:left;width:48%;'>
+  <pre><code class="r">x &lt;- list(1, 2, 3)
+str(x)
+</code></pre>
+
+<pre><code class="no-highlight">## List of 3
+##  $ : num 1
+##  $ : num 2
+##  $ : num 3
+</code></pre>
+
+</div>
+<div style='float:right;width:48%;'>
+  
+</div>
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-43" style="background:;">
+  <hgroup>
+    <h2>Listenstruktur</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Eine nützliche Funktion zum Anzeigen der Struktur ist <code>str()</code>:</p>
+
+<div style='float:left;width:48%;'>
+  <pre><code class="r">x &lt;- list(1, 2, 3)
+str(x)
+</code></pre>
+
+<pre><code class="no-highlight">## List of 3
+##  $ : num 1
+##  $ : num 2
+##  $ : num 3
+</code></pre>
+
+</div>
+<div style='float:right;width:48%;'>
+  <pre><code class="r">x_named &lt;- list(a = 1, b = 2, c = 3)
+str(x_named)
+</code></pre>
+
+<pre><code class="no-highlight">## List of 3
+##  $ a: num 1
+##  $ b: num 2
+##  $ c: num 3
+</code></pre>
+
+</div>
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="segue" style="background:#1874CD;">
+  <hgroup>
+    <h1>2-dimensionale Datenstrukturen</h1>
+  </hgroup>
+  <article>
+    <p><img src="img/Data_science_1a.png" style="height:150px;border:0;position: absolute; left: 900px; top: 50px" </img> </p>
+
+  </article>
+</slide>
+<slide class="" id="slide-45" style="background:;">
+  <hgroup>
+    <h2>Matrizen und arrays</h2>
+  </hgroup>
+  <article data-timings="">
+    
+<div style='float:left;width:48%;'>
+  <ul>
+<li><strong>Matrizen</strong> sind 2-dimensionale atomare Vektoren (alle Elemente müssen den gleichen Datentyp haben), die vor allem in der numerischen Modellierung verwendet werden.</li>
+<li><strong>Arrays</strong> sind multidimensionale atomare Vektoren, werden in der Datenanalyse aber weniger genutzt.</li>
+</ul>
+
+</div>
+<div style='float:right;width:48%;'>
+  <p><img src="img/Arrays.jpg" title="plot of chunk unnamed-chunk-37" alt="plot of chunk unnamed-chunk-37" width="500px" style="display: block; margin: auto;" /></p>
+
+</div>
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-46" style="background:;">
+  <hgroup>
+    <h2>Data frames</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="img/Data_frames.png" style="width:250px;border:0;position: absolute; left: 775px; top: 75px" </img> </p>
+
+<ul>
+<li>Die <strong>gebräuchlichste</strong> Datenstruktur zum Speichern von Daten in R.</li>
+<li>Representiert eine <strong>Liste von gleich langen Vektoren</strong> 
+
+<ul>
+<li>→ dadurch 2-dimensionale Struktur</li>
+</ul></li>
+<li>Sehr flexibel da sie die gleichen Eigenschaften wie eine Liste und Matrix besitzen.</li>
+</ul>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-47" style="background:;">
+  <hgroup>
+    <h2>Erstellen von data frames</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Data frames kann man mit der Funktion <code>data.frame()</code> erstellen (Achte auf den <strong>Punkt</strong> zwischen beiden Wörtern!), welche Vektoren mit <strong>Namen</strong> als Input nimmt:</p>
+
+<pre><code class="r">df &lt;- data.frame(x = 1:3, y = c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;)) 
+str(df)
+</code></pre>
+
+<pre><code class="no-highlight">## &#39;data.frame&#39;:    3 obs. of  2 variables:
+##  $ x: int  1 2 3
+##  $ y: Factor w/ 3 levels &quot;a&quot;,&quot;b&quot;,&quot;c&quot;: 1 2 3
+</code></pre>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-48" style="background:;">
+  <hgroup>
+    <h2>Erstellen von data frames</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Data frames kann man mit der Funktion <code>data.frame()</code> erstellen (Achte auf den <strong>Punkt</strong> zwischen beiden Wörtern!), welche Vektoren mit <strong>Namen</strong> als Input nimmt:</p>
+
+<pre><code class="r">df &lt;- data.frame(x = 1:3, y = c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;)) 
+str(df)
+</code></pre>
+
+<pre><code class="no-highlight">## &#39;data.frame&#39;:    3 obs. of  2 variables:
+##  $ x: int  1 2 3
+##  $ y: Factor w/ 3 levels &quot;a&quot;,&quot;b&quot;,&quot;c&quot;: 1 2 3
+</code></pre>
+
+<ul>
+<li>Achte auf das Verhalten von <code>data.frame()</code> beim Einlesen von strings: diese werden zu <strong>Faktoren</strong> automatisch umgewandelt. Mit dem Argument <code>stringsAsFactors = FALSE</code> kann man dies unterdrücken:</li>
+</ul>
+
+<pre><code class="r">df &lt;- data.frame(x = 1:3, y = c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;), stringsAsFactors = FALSE)
+str(df)
+</code></pre>
+
+<pre><code class="no-highlight">## &#39;data.frame&#39;:    3 obs. of  2 variables:
+##  $ x: int  1 2 3
+##  $ y: chr  &quot;a&quot; &quot;b&quot; &quot;c&quot;
+</code></pre>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-49" style="background:;">
+  <hgroup>
+    <h2>Längenattribute</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><code>length()</code> in multidimensionalen Datenstrukturen lässt sich verallgemeinern zu</p>
+
+<ul>
+<li><code>nrow()</code> and <code>ncol()</code> bei 2 Dimensionen</li>
+</ul>
+
+<pre><code class="r">nrow(df)
+</code></pre>
+
+<pre><code class="no-highlight">## [1] 3
+</code></pre>
+
+<pre><code class="r">ncol(df)
+</code></pre>
+
+<pre><code class="no-highlight">## [1] 2
+</code></pre>
+
+<ul>
+<li><code>dim()</code> bei 2 oder 3 Dimensionen</li>
+</ul>
+
+<pre><code class="r">dim(df)
+</code></pre>
+
+<pre><code class="no-highlight">## [1] 3 2
+</code></pre>
+
+<p><small>(zeigt erst die Zeile, dann die Spalte, dann die Anzahl der 3. Dim.)</small></p>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-50" style="background:;">
+  <hgroup>
+    <h2>Namensattribute</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><code>names()</code> zeigt in data frames den Spaltennamen an</p>
+
+<pre><code class="r">names(df)
+</code></pre>
+
+<pre><code class="no-highlight">## [1] &quot;x&quot; &quot;y&quot;
+</code></pre>
+
+<p>Diese können auch überschrieben werden:</p>
+
+<pre><code class="r">names(df) &lt;- c(&quot;x_neu&quot;, &quot;y_neu&quot;)
+df
+</code></pre>
+
+<pre><code class="no-highlight">##   x_neu y_neu
+## 1     1     a
+## 2     2     b
+## 3     3     c
+</code></pre>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-51" style="background:;">
+  <hgroup>
+    <h2>Induzieren von data frames (Matrix-artig): &#39;[rows,columns]&#39;</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Es wird <strong>jede</strong> Dimension mit einem <strong>1d index</strong> getrennt durch ein Komma angegeben (<em>integer, logical, or character</em> Indizes sind erlaubt). </li>
+<li><strong>Leere Indizes</strong> sind erlaubt um alle Zeilen bzw. Spalten auszuwählen.</li>
+</ul>
+
+<div style='float:left;width:48%;'>
+  <p>Anhand der Position auswählen</p>
+
+<pre><code class="r">df[c(1,3), 2] 
+df[1:2, 2] 
+</code></pre>
+
+<p><small>(1:2 ist ein shortcut for<br><code>seq(from = 1, to = 2, by = 1</code></small>)</p>
+
+</div>
+<div style='float:right;width:48%;'>
+  <p>Anhand der Namen auswählen</p>
+
+<pre><code class="r">df[ , c(&quot;x_neu&quot;) ] 
+</code></pre>
+
+<p><strong>Rate, welche Werte ausgegeben werden!</strong></p>
+
+</div>
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-52" style="background:;">
+  <hgroup>
+    <h2>Induzieren von data frames (Matrix-artig): &#39;[rows,columns]&#39;</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Es wird <strong>jede</strong> Dimension mit einem <strong>1d index</strong> getrennt durch ein Komma angegeben (<em>integer, logical, or character</em> Indizes sind erlaubt). </li>
+<li><strong>Leere Indizes</strong> sind erlaubt um alle Zeilen bzw. Spalten auszuwählen.</li>
+</ul>
+
+<div style='float:left;width:48%;'>
+  <p>Anhand der Position auswählen</p>
+
+<pre><code class="r">df[c(1,3), 2] 
+df[1:2, 2] 
+</code></pre>
+
+<p><small>(1:2 ist ein shortcut for<br><code>seq(from = 1, to = 2, by = 1</code></small>)</p>
+
+</div>
+<div style='float:right;width:48%;'>
+  <p>Anhand der Namen auswählen</p>
+
+<pre><code class="r">df[ , c(&quot;x_neu&quot;) ] 
+</code></pre>
+
+<pre><code class="no-highlight">## [1] 1 2 3
+</code></pre>
+
+</div>
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-53" style="background:;">
+  <hgroup>
+    <h2>Induzieren von data frames (Listen-artig): &#39;$&#39;</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><code>$</code> ist eine <strong>shorthand Notation</strong> zum extrahieren von benannten Elementen in einem data frame:</p>
+
+<pre><code class="r">df$x_neu
+</code></pre>
+
+<pre><code class="no-highlight">## [1] 1 2 3
+</code></pre>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-54" style="background:;">
+  <hgroup>
+    <h2>Werte mittels Induzierung ersetzen</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">df[1,1]
+</code></pre>
+
+<pre><code class="no-highlight">## [1] 1
+</code></pre>
+
+<pre><code class="r">df[1,1] &lt;- NA
+df
+</code></pre>
+
+<pre><code class="no-highlight">##   x_neu y_neu
+## 1    NA     a
+## 2     2     b
+## 3     3     c
+</code></pre>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-55" style="background:;">
+  <hgroup>
+    <h2>Spalten anhängen mit dem &#39;$&#39; Operator</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">df$z_new
+</code></pre>
+
+<pre><code class="no-highlight">## NULL
+</code></pre>
+
+<pre><code class="r">df$z_new &lt;- 10:12
+df
+</code></pre>
+
+<pre><code class="no-highlight">##   x_neu y_neu z_new
+## 1    NA     a    10
+## 2     2     b    11
+## 3     3     c    12
+</code></pre>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-56" style="background:;">
+  <hgroup>
+    <h2>Bestimmung der Datenstruktur</h2>
+  </hgroup>
+  <article data-timings="">
+    
+<div style='float:left;width:48%;'>
+  <p>Entweder mit <code>str()</code>:</p>
+
+<pre><code class="r">str(df)
+</code></pre>
+
+<pre><code class="no-highlight">## &#39;data.frame&#39;:    3 obs. of  3 variables:
+##  $ x_neu: int  NA 2 3
+##  $ y_neu: chr  &quot;a&quot; &quot;b&quot; &quot;c&quot;
+##  $ z_new: int  10 11 12
+</code></pre>
+
+</div>
+<div style='float:right;width:48%;'>
+  <p>Oder mit der Funktion <code>class()</code>:</p>
+
+<pre><code class="r">class(df)
+</code></pre>
+
+<pre><code class="no-highlight">## [1] &quot;data.frame&quot;
+</code></pre>
+
+</div>
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="segue" style="background:#EEC900;">
+  <hgroup>
+    <h1>Aufgabe</h1>
+  </hgroup>
+  <article>
+    
+  </article>
+</slide>
+<slide class="" id="slide-58">
+<hgroup>
+  <h2>Quiz 9: Erstelle selber einen data frame ...</h2>
+</hgroup>
+<article data-timings="">
+  <div style="background-color:#F5F5F5; text-align:left; vertical-align: middle; padding:20px 47px;">
+    <p class='..'>der folgendes enthält:</p>
+
+<ul>
+<li><strong>4 Variablen</strong> mit unterschiedlichen Datentypen (logical, character, double, and/or integer), </li>
+<li>alle mit der <strong>Länge 20</strong> und</li>
+<li>gebe jeder Variable einen <strong>Namen</strong>.</li>
+</ul>
+
+  </div>
+  <footer>
+    <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+      <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+    </div>
+    <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+      <a href='https://saskiaotto.github.io/bsh_r_kurs/' style="font-size: 15px;
+      font-style: italic; top: 610px; ">Datenanalyse mit R</a>
+    </div>
+  </footer>
+</article>
+<!-- Presenter Notes -->
+</slide>
+
+<style>
+#slide-58 {
+  background-color: #EEC900;
+}
+</style>
+<slide class="" id="slide-59">
+<hgroup>
+  <h2>Quiz 10: Extrahiere einzelne Werte Deines data frames</h2>
+</hgroup>
+<article data-timings="">
+  <div style="background-color:#F5F5F5; text-align:left; vertical-align: middle; padding:20px 47px;">
+    <ol>
+<li>Extrahiere die 3. Spalte</li>
+<li>Extrahiere die 10. Zeile</li>
+<li>Extrahiere Zeile 5-10 von Spalten 2-3</li>
+</ol>
+
+  </div>
+  <footer>
+    <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+      <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+    </div>
+    <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+      <a href='https://saskiaotto.github.io/bsh_r_kurs/' style="font-size: 15px;
+      font-style: italic; top: 610px; ">Datenanalyse mit R</a>
+    </div>
+  </footer>
+</article>
+<!-- Presenter Notes -->
+</slide>
+
+<style>
+#slide-59 {
+  background-color: #EEC900;
+}
+</style>
+<slide class="" id="slide-60">
+<hgroup>
+  <h2>Quiz 11: Modifiziere Deinen data frame</h2>
+</hgroup>
+<article data-timings="">
+  <div style="background-color:#F5F5F5; text-align:left; vertical-align: middle; padding:20px 47px;">
+    <ol>
+<li>Füge eine 5.Spalte ein, die nur <code>TRUE</code> enthält</li>
+<li>Tausche alle Spaltennamen gegen andere Namen aus</li>
+<li>Ersetze Wert 1-4 in der 1. Spalte gegen <code>NA</code></li>
+</ol>
+
+  </div>
+  <footer>
+    <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+      <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+    </div>
+    <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+      <a href='https://saskiaotto.github.io/bsh_r_kurs/' style="font-size: 15px;
+      font-style: italic; top: 610px; ">Datenanalyse mit R</a>
+    </div>
+  </footer>
+</article>
+<!-- Presenter Notes -->
+</slide>
+
+<style>
+#slide-60 {
+  background-color: #EEC900;
+}
+</style>
+<slide class="" id="slide-61" style="background:#EEC900;">
+  <hgroup>
+    <h1>Quiz 12: <code>iris</code> dataset - Datenstruktur</h1>
+  </hgroup>
+  <article data-timings="">
+    
+<div class="quiz quiz-single well ">
+  <p>Schau Dir folgenden Datensatz an</p>
+
+<pre><code class="r">head(iris, 1)
+</code></pre>
+
+<pre><code class="no-highlight">##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+</code></pre>
+
+<p>Welche Datenstruktur ist <code>iris</code>?</p>
+
+<ol>
+<li>list</li>
+<li>matrix</li>
+<li>array</li>
+<li><em>data frame</em></li>
+</ol>
+
+  <button class="quiz-submit btn btn-primary">Submit</button>
+  <button class="quiz-toggle-hint btn btn-info">Show Hint</button>
+  <button class="quiz-show-answer btn btn-success">Show Answer</button>
+  <button class="quiz-clear btn btn-danger">Clear</button>
+  
+  <div class="quiz-hint">
+  <p><small>Verwende die <code>class()</code> Funktion.</small></p>
+
+</div>
+<div class="quiz-explanation">
+  <p><code>iris</code> ist ein data frame da es 2-dimensional ist und die Variablen unterschiedliche Datentypen aufweisen.</p>
+
+</div>
+</div>
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-62" style="background:#EEC900;">
+  <hgroup>
+    <h1>Quiz 13: <code>iris</code> dataset - Dimensionen</h1>
+  </hgroup>
+  <article data-timings="">
+    
+<div class="quiz quiz-single well ">
+  <p>Wieviele Dimensionen hat <code>iris</code>?</p>
+
+<ol>
+<li>5 Zeilen, 150 Spalten</li>
+<li><em>150 Zeilen, 5 Spalten</em></li>
+</ol>
+
+  <button class="quiz-submit btn btn-primary">Submit</button>
+  <button class="quiz-toggle-hint btn btn-info">Show Hint</button>
+  <button class="quiz-show-answer btn btn-success">Show Answer</button>
+  <button class="quiz-clear btn btn-danger">Clear</button>
+  
+  <div class="quiz-hint">
+  <p><small>Verwende die <code>nrow()</code> und <code>ncol()</code> Funktionen.</small></p>
+
+</div>
+</div>
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-63" style="background:#EEC900;">
+  <hgroup>
+    <h1>Quiz 14: <code>iris</code> dataset - Datentype</h1>
+  </hgroup>
+  <article data-timings="">
+    
+<div class="quiz quiz-multiple well" data-individual>
+  <p>Welchen Datentypen gibt es im Datensatz <code>iris</code> (Mehrfachnennungen möglich)?</p>
+
+<ol>
+<li>logical</li>
+<li>integer</li>
+<li><em>double</em></li>
+<li>character</li>
+<li><em>factor</em></li>
+<li>date</li>
+</ol>
+
+  <button class="quiz-submit btn btn-primary">Submit</button>
+  <button class="quiz-toggle-hint btn btn-info">Show Hint</button>
+  <button class="quiz-show-answer btn btn-success">Show Answer</button>
+  <button class="quiz-clear btn btn-danger">Clear</button>
+  
+  <div class="quiz-hint">
+  <p><small>verwendende die <code>str()</code> Funktion.</small></p>
+
+</div>
+<div class="quiz-explanation">
+  <p>Die ersten 4 Spalten sind vom Typ double, die letzte Spalte ist vom Typ character mit zusätzlichen Attributen (daher Faktor).</p>
+
+</div>
+</div>
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="segue" style="background:#E5E5E5;">
+  <hgroup>
+    <h2>Übersicht an neuen Funktionen</h2>
+  </hgroup>
+  <article>
+    <p><code>c()</code>, <code>list()</code>, <code>data.frame()</code>, <code>data.frame(stringsAsFactors = FALSE)</code></p>
+
+<p><code>[</code>, <code>$</code>, </p>
+
+<p><code>length()</code>, <code>nrow()</code>, <code>ncol()</code>, <code>dim()</code>, </p>
+
+<p><code>names()</code> </p>
+
+<p><code>typeof()</code>, <code>str()</code>, <code>class()</code>, </p>
+
+  </article>
+</slide>
+<slide class="segue" style="background:#CD2626;">
+  <hgroup>
+    <h1>Wie fühlst Du Dich?</h1>
+  </hgroup>
+  <article>
+    
+  </article>
+</slide>
+<slide class="" id="slide-66">
+  <hgroup>
+    <h2>Total konfus?</h2>
+  </hgroup>
+  <article class = 'flexbox vcenter'>
+    <p><img src="img/Comic_confused.png" title="plot of chunk unnamed-chunk-55" alt="plot of chunk unnamed-chunk-55" width="400px" style="display: block; margin: auto;" /></p>
+
+<p>Versuche das <a href="https://campus.datacamp.com/courses/free-introduction-to-r/chapter-1-intro-to-basics-1?ex=1">online tutorial auf Data Camp</a></p>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-67">
+  <hgroup>
+    <h2>Total gelangweilt?</h2>
+  </hgroup>
+  <article class = 'flexbox vcenter'>
+    <p><img src="img/Comic_bored.png" title="plot of chunk unnamed-chunk-56" alt="plot of chunk unnamed-chunk-56" width="800px" style="display: block; margin: auto auto auto 0;" /></p>
+
+<p>Dann probiere folgendes: Berechne für den <code>iris</code> Datensatz</p>
+
+<ul>
+<li>die mittlere Länge der Sepal- und Petalblatt-Länge pro Art</li>
+<li>die kürzeste Petalblatt-Länge für &#39;setosa&#39;</li>
+<li>Welche Art hat die längste Sepalblatt-Länge?</li>
+</ul>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-68" style="background:;">
+  <hgroup>
+    <h2>Absolut zufrieden?</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Dann hol Dir einen Kaffee, lehn Dich zurück und genieße den Rest des Tages...!</p>
+
+<p><img src="img/Comic_hammock.png" title="plot of chunk unnamed-chunk-57" alt="plot of chunk unnamed-chunk-57" width="600px" style="display: block; margin: auto;" /></p>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="thank-you-slide segue" id="slide-69">
+  <footer>
+    <div style="position: absolute; left: 50px; top: 50px; z-index:100">
+        <img src = "assets/img/uham_logo.png" height="67" width="200">
+    </div>
+  </footer>
+  <article>
+    <h1 style="padding-top: 120px;"> </h1>
+    <p style="font-size: 15px; position: absolute; left: 125px; top: 480px; z-index:100;">
+    <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+      <img alt="Creative Commons License" style="border-width:0"
+        src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br>
+        Diese Arbeit ist lizensiert unter der <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+        Creative Commons Attribution-ShareAlike 4.0 International License </a><br>mit Ausnahme externer
+        Materialien gekennzeichnet durch die <i>source:</i> Angabe. <br>
+        <b>Bild auf Titel- und Abschlussfolie:</b> <br>
+        Infrarot-Satellitenbild des Larsen C Schelfeis in der Antarktik <br>
+        USGS/NASA Landsat: <a href="https://landsat.visibleearth.nasa.gov/view.php?id=90481">
+        A Crack of Light in the Polar Dark</a>, Landsat 8 - TIRS, 17.Juni 2017 <br>
+        (unter CC0 Lizenz)
+    </p>
+  </article>
+</slide>
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Datenstrukturen'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='The einfachste Sruktur: atomare Vektoren'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Atomare Vektoren'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Atomare Vektoren'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='Atomare Vektoren'>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='Hierarchie von Datentypen in atomaren Vektoren'>
+         6
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=7 title='Wichtige tools zum Arbeiten mit Vektoren'>
+         7
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=8 title='1. Coercion'>
+         8
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=9 title='1. Coercion'>
+         9
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=10 title='1. Coercion (Forts.s)'>
+         10
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=11 title='Your turn...'>
+         11
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=12 title='Quiz 1: Coercion Regeln'>
+         12
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=13 title='Quiz 2: Coercion Regeln'>
+         13
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=14 title='Quiz 3: Coercion Regeln'>
+         14
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=15 title='Quiz 4: Coercion Regeln'>
+         15
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=16 title='Quiz 5 - Challenge: Coercion Regeln'>
+         16
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=17 title='2. Recycling Regel'>
+         17
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=18 title='2. Recycling Regel'>
+         18
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=19 title='Aufgabe'>
+         19
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=20 title='Quiz 6: Recycling Regeln'>
+         20
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=21 title='3. Vektorelemente benennen'>
+         21
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=22 title='4. Induzieren'>
+         22
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=23 title='NA'>
+         23
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=24 title='NA'>
+         24
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=25 title='NA'>
+         25
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=26 title='NA'>
+         26
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=27 title='NA'>
+         27
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=28 title='Aufgabe'>
+         28
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=29 title='Quiz 7: Subsetting'>
+         29
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=30 title='Quiz 8: Subsetting'>
+         30
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=31 title='Vektorisierte Operationen in R'>
+         31
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=32 title='Einfache Berechnungen'>
+         32
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=33 title='Vektorisierte Berechnungen'>
+         33
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=34 title='Vektorisierte Berechnungen'>
+         34
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=35 title='Vektorisierte Berechnungen'>
+         35
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=36 title='Listen'>
+         36
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=37 title='Lists'>
+         37
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=38 title='Listen sind Vektoren'>
+         38
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=39 title='Warum wird eine Liste als Vektor betrachtet?'>
+         39
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=40 title='Listen (Forts.)'>
+         40
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=41 title='Visualisierung folgender Listen'>
+         41
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=42 title='Listenstruktur'>
+         42
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=43 title='Listenstruktur'>
+         43
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=44 title='2-dimensionale Datenstrukturen'>
+         44
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=45 title='Matrizen und arrays'>
+         45
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=46 title='Data frames'>
+         46
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=47 title='Erstellen von data frames'>
+         47
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=48 title='Erstellen von data frames'>
+         48
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=49 title='Längenattribute'>
+         49
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=50 title='Namensattribute'>
+         50
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=51 title='Induzieren von data frames (Matrix-artig): &#39;[rows,columns]&#39;'>
+         51
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=52 title='Induzieren von data frames (Matrix-artig): &#39;[rows,columns]&#39;'>
+         52
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=53 title='Induzieren von data frames (Listen-artig): &#39;$&#39;'>
+         53
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=54 title='Werte mittels Induzierung ersetzen'>
+         54
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=55 title='Spalten anhängen mit dem &#39;$&#39; Operator'>
+         55
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=56 title='Bestimmung der Datenstruktur'>
+         56
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=57 title='Aufgabe'>
+         57
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=58 title='Quiz 9: Erstelle selber einen data frame ...'>
+         58
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=59 title='Quiz 10: Extrahiere einzelne Werte Deines data frames'>
+         59
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=60 title='Quiz 11: Modifiziere Deinen data frame'>
+         60
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=61 title='Quiz 12: <code>iris</code> dataset - Datenstruktur'>
+         61
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=62 title='Quiz 13: <code>iris</code> dataset - Dimensionen'>
+         62
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=63 title='Quiz 14: <code>iris</code> dataset - Datentype'>
+         63
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=64 title='Übersicht an neuen Funktionen'>
+         64
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=65 title='Wie fühlst Du Dich?'>
+         65
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=66 title='Total konfus?'>
+         66
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=67 title='Total gelangweilt?'>
+         67
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=68 title='Absolut zufrieden?'>
+         68
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=69 title='NA'>
+         69
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script
+      src="https://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  <script src="libraries/widgets/quiz/js/jquery.quiz.js"></script>
+<script src="libraries/widgets/quiz/js/mustache.min.js"></script>
+<script src="libraries/widgets/quiz/js/quiz-app.js"></script>
+<script src="libraries/widgets/bootstrap/js/bootstrap.min.js"></script>
+<script src="libraries/widgets/bootstrap/js/bootbox.min.js"></script>
+<script src="libraries/widgets/interactive/js/ace/js/ace.js"></script>
+<script src="libraries/widgets/interactive/js/opencpu-0.5.js"></script>
+<script src="libraries/widgets/interactive/js/interactive.js"></script>
+
+  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+  </script>
+  <!-- following line slidify default but is outdated -->
+  <!-- <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+  
+  <!-- accoding to https://www.mathjax.org/#gettingstarted  this is the line of code to
+    change the version number in the src attribute any time the version of MathJax changes
+    (Although this refers to a specific version, the latest.js file will load the most current version regardless of the one you specified.)
+  -->
+    <script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+  
+  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> -->
+  <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+<script>  
+  $(function (){ 
+    $("#example").popover(); 
+    $("[rel='tooltip']").tooltip(); 
+  });  
+  </script>  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
