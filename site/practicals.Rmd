@@ -39,3 +39,11 @@ install.packages(c("tidyverse", "lubridate", "modelr","RColorBrewer", "ggmap", "
     dependencies = TRUE)
 ```
 
+<br>
+
+# Begleitender *swirl* Kurs
+
+Im Rahmen des [Lehrlabors](https://www.universitaetskolleg.uni-hamburg.de/universitaetskolleg-2-0/lehrlabor.html) der Universität Hamburg gibt es das Projekt [R-lab 2.0](https://rlab.blogs.uni-hamburg.de) welches Online Tutorials zu R in den Umweltwissenschaften mittels *swirl* anbietet. Auch das Institut für Marine Ökosystem und Fischereiwissenschaft ist an dem Projekt beteiligt und hat einen begleitenden *swirl* Kurs zu diesem B-MARSYS 6 (Statistik und Programmierung mit R) Kurs auf Deutsch konzipiert: [https://rlab.blogs.uni-hamburg.de/marine-oekosystem-und-fischereiwissenschaften/](https://rlab.blogs.uni-hamburg.de/marine-oekosystem-und-fischereiwissenschaften/)
+
+<br>
+<br>
