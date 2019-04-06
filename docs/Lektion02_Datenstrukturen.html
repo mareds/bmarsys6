@@ -107,7 +107,7 @@
 </slide>
 <slide class="segue" style="background:#1874CD;">
   <hgroup>
-    <h1>The einfachste Sruktur: atomare Vektoren</h1>
+    <h1>Die einfachste Sruktur: atomare Vektoren</h1>
   </hgroup>
   <article>
     <p><img src="img/Data_science_1a.png" style="height:150px;border:0;position: absolute; left: 900px; top: 50px" </img> </p>
@@ -158,7 +158,7 @@ chr_var &lt;- c(&quot;these are&quot;, &quot;some strings&quot;)
 
 <div style='float:left;width:48%;'>
   <ul>
-<li>oder mit <code>seq()</code> (= <strong>sequence</strong>) </li>
+<li>oder mit <code>seq()</code> (= <strong>sequence</strong>):</li>
 </ul>
 
 <pre><code class="r">seq(from = 0, to = 1, by = 0.2)
@@ -170,7 +170,7 @@ chr_var &lt;- c(&quot;these are&quot;, &quot;some strings&quot;)
 </div>
 <div style='float:right;width:48%;'>
   <ul>
-<li>oder <code>rep()</code>(= <strong>repeat</strong>)</li>
+<li>oder <code>rep()</code>(= <strong>repeat</strong>):</li>
 </ul>
 
 <pre><code class="r">rep(&quot;a&quot;, times = 5)
@@ -287,7 +287,7 @@ length(x)
   <article data-timings="">
     <ul>
 <li>Alle Elemente eines atomaren Vektors müssen <strong>den gleichen</strong> Datentypen haben.</li>
-<li><strong>Unterschiedliche Typen</strong> werden &#39;zwangsungewandelt (<strong>coerced</strong>) und zwar zum flexibleren Typen.</li>
+<li><strong>Unterschiedliche Typen</strong> werden &#39;zwangsumgewandelt&#39; (<strong>coerced</strong>) und zwar zum flexibleren Typen.</li>
 <li>Flexibilität (von gering zu hoch):
 
 <ul>
@@ -323,7 +323,7 @@ length(x)
 </ul>
 
 <p><br><br>
-character und integer wird zu character:</p>
+Beispiel: character und integer wird zu character</p>
 
 <pre><code class="r">str(c(&quot;a&quot;, 1))
 </code></pre>
@@ -348,7 +348,7 @@ character und integer wird zu character:</p>
     <h2>1. Coercion (Forts.s)</h2>
   </hgroup>
   <article data-timings="">
-    <p>Wenn logische Elemente zu integer oder double umgewandelt werden, wird jedes <code>TRUE</code> zu einer 1 und <code>FALSE</code> wird zu 0. Dies kann sehr nützlich bei Berechnungen mit <code>sum()</code> und <code>mean()</code> sein:</p>
+    <p>Wenn logische Elemente zu integer oder double umgewandelt werden, wird jedes <code>TRUE</code> zu einer 1 und <code>FALSE</code> wird zu 0. Dies kann bei Berechnungen mit <code>sum()</code> und <code>mean()</code> sehr nützlich sein:</p>
 
 <pre><code class="r">x &lt;- c(FALSE, FALSE, TRUE)
 as.numeric(x)
@@ -357,7 +357,7 @@ as.numeric(x)
 <pre><code class="no-highlight">## [1] 0 0 1
 </code></pre>
 
-<pre><code class="r"># Total number of TRUEs
+<pre><code class="r"># Summer aller TRUEs
 sum(x)
 </code></pre>
 
@@ -608,7 +608,7 @@ x[z] &lt;- NA  # place NAs on the positions in z
     <h2>2. Recycling Regel</h2>
   </hgroup>
   <article data-timings="">
-    <p>Ähnlich wie die implizierte Datentyp-Umwandlung führt R auch eine implizierte Verlängerung von Vektoren bei Operationen mit 2 Vektoren durch: der <strong>kürzere Vektor</strong>auf die gleiche Länge des längeren Vektors <strong>verlängert</strong>, indem die Lücke mit den bereits vorhandenen Elementen gefüllt wird.</p>
+    <p>Ähnlich wie die implizierte Datentyp-Umwandlung führt R auch eine implizierte Verlängerung von Vektoren bei Operationen mit 2 Vektoren durch: der <strong>kürzere Vektor</strong> wird auf die gleiche Länge des längeren Vektors <strong>verlängert</strong>, indem die Lücke mit den bereits vorhandenen Elementen gefüllt wird.</p>
 
 <pre><code class="r">1:10 + 100
 </code></pre>
@@ -633,7 +633,7 @@ x[z] &lt;- NA  # place NAs on the positions in z
     <h2>2. Recycling Regel</h2>
   </hgroup>
   <article data-timings="">
-    <p>Ähnlich wie die implizierte Datentyp-Umwandlung führt R auch eine implizierte Verlängerung von Vektoren bei Operationen mit 2 Vektoren durch: der <strong>kürzere Vektor</strong>auf die gleiche Länge des längeren Vektors <strong>verlängert</strong>, indem die Lücke mit den bereits vorhandenen Elementen gefüllt wird.</p>
+    <p>Ähnlich wie die implizierte Datentyp-Umwandlung führt R auch eine implizierte Verlängerung von Vektoren bei Operationen mit 2 Vektoren durch: der <strong>kürzere Vektor</strong> wird auf die gleiche Länge des längeren Vektors <strong>verlängert</strong>, indem die Lücke mit den bereits vorhandenen Elementen gefüllt wird.</p>
 
 <pre><code class="r">1:10 + 100
 </code></pre>
@@ -716,7 +716,7 @@ b &lt;- 1:5
     <h2>3. Vektorelemente benennen</h2>
   </hgroup>
   <article data-timings="">
-    <p>Alle Elemente in Vektoren können Namen erhalten. Entweder beim Erstellen mit <code>c()</code>:</p>
+    <p>Alle Elemente in Vektoren können Namen erhalten. Entweder beim Erstellen mit <code>c()</code></p>
 
 <pre><code class="r">c(a = 1, b = 2, c = 4)
 </code></pre>
@@ -725,7 +725,7 @@ b &lt;- 1:5
 ## 1 2 4
 </code></pre>
 
-<p>Oder <strong>anschließend</strong> mit der Funktion <code>names()</code></p>
+<p>oder <strong>anschließend</strong> mit der Funktion <code>names()</code></p>
 
 <pre><code class="r">x &lt;- c(1,5,3)
 names(x) &lt;- c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;)
@@ -760,8 +760,8 @@ x
 <ol>
 <li>Mittels <strong>numerischem</strong> Vektor der integers enthält und die Position angibt</li>
 <li>Mittels <strong>logischem</strong> Vektor </li>
-<li>Mittels Vektor<strong>namen</strong> --&gt; ungewöhnlich</li>
-<li><strong>Nichts</strong> angeben (eckige Klammern sind leer)  --&gt; ungewöhnlich</li>
+<li>Mittels Vektor<strong>namen</strong> → ungewöhnlich</li>
+<li><strong>Nichts</strong> angeben (eckige Klammern sind leer) → ungewöhnlich</li>
 </ol>
 
     <footer>
@@ -781,7 +781,7 @@ x
     <p>1.Mittels <strong>numerischem</strong> Vektor der integers enthält und die Position angibt</p>
 
 <pre><code class="r">x &lt;- c(&quot;one&quot;, &quot;two&quot;, &quot;three&quot;, &quot;four&quot;, &quot;five&quot;)
-# Positive integers wählen die entsprechenden Elemente aus
+# Positive integers wählen die entsprechenden Elemente aus:
 x[c(5, 1, 3)]
 </code></pre>
 
@@ -913,7 +913,7 @@ x[!b]  # Das Ausrufungszeichen ! kehrt die TRUE/FALSE Werte um
 <pre><code class="no-highlight">## [1] 10  3  5  8  1
 </code></pre>
 
-<pre><code class="r"># Alle geraden (oderr nicht fehlenden!) Werte von x
+<pre><code class="r"># Alle geraden (oder nicht fehlenden!) Werte von x
 x[x %% 2 == 0]
 </code></pre>
 
@@ -949,7 +949,7 @@ x[x %% 2 == 0]
 <div class="quiz-text quiz-multitext well">
   <p>Ein Vektor <strong>x</strong> enthält 20 zufällige Zahlen im Bereich 1 - 1000:</p>
 
-<pre><code class="r">set.seed(1) # (= state of the Random Number Generator set to 1)
+<pre><code class="r">set.seed(1) # (= Zustand des Random Number Generator wird auf 1 gesetzt)
 x &lt;- sample(1:1000, 20) 
 </code></pre>
 
@@ -1243,7 +1243,7 @@ str(x)
   </hgroup>
   <article data-timings="">
     <ul>
-<li>Werden manchmal <strong>rekursive Vektoren</strong> bzeichnet weil eine Liste weitere Listen enthalen kann. </li>
+<li>Werden manchmal <strong>rekursive Vektoren</strong> bezeichnet weil eine Liste weitere Listen enthalen kann. </li>
 </ul>
 
 <pre><code class="r">x &lt;- list(list(list(list())))
@@ -1425,7 +1425,7 @@ str(x_named)
 <ul>
 <li>→ dadurch 2-dimensionale Struktur</li>
 </ul></li>
-<li>Sehr flexibel da sie die gleichen Eigenschaften wie eine Liste und Matrix besitzen.</li>
+<li>Sehr flexibel da sie die gleichen Eigenschaften wie eine Liste und Matrix besitzt.</li>
 </ul>
 
     <footer>
@@ -1610,7 +1610,7 @@ df
 df[1:2, 2] 
 </code></pre>
 
-<p><small>(1:2 ist ein shortcut for<br><code>seq(from = 1, to = 2, by = 1</code></small>)</p>
+<p><small>(1:2 ist ein shortcut für<br><code>seq(from = 1, to = 2, by = 1</code></small>)</p>
 
 </div>
 <div style='float:right;width:48%;'>
@@ -1651,7 +1651,7 @@ df[1:2, 2]
 df[1:2, 2] 
 </code></pre>
 
-<p><small>(1:2 ist ein shortcut for<br><code>seq(from = 1, to = 2, by = 1</code></small>)</p>
+<p><small>(1:2 ist ein shortcut für<br><code>seq(from = 1, to = 2, by = 1</code></small>)</p>
 
 </div>
 <div style='float:right;width:48%;'>
@@ -1681,7 +1681,7 @@ df[1:2, 2]
     <h2>Induzieren von data frames (Listen-artig): &#39;$&#39;</h2>
   </hgroup>
   <article data-timings="">
-    <p><code>$</code> ist eine <strong>shorthand Notation</strong> zum extrahieren von benannten Elementen in einem data frame:</p>
+    <p><code>$</code> ist eine <strong>shorthand Notation</strong> zum Extrahieren von benannten Elementen in einem data frame:</p>
 
 <pre><code class="r">df$x_neu
 </code></pre>
@@ -2171,7 +2171,7 @@ df
     </li>
     <li>
       <a href="#" target="_self" rel='tooltip' 
-        data-slide=2 title='The einfachste Sruktur: atomare Vektoren'>
+        data-slide=2 title='Die einfachste Sruktur: atomare Vektoren'>
          2
       </a>
     </li>
