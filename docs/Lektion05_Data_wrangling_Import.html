@@ -1,0 +1,2007 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Statistik und Programmierung mit R</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Statistik und Programmierung mit R">
+  <meta name="author" content="Saskia Otto &amp; Christian Möllmann">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <!-- the following meta tag added by me (SAO) -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css"
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/sao_theme.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="libraries/widgets/quiz/css/demo.css"></link>
+<link rel=stylesheet href="libraries/widgets/bootstrap/css/bootstrap.css"></link>
+<link rel=stylesheet href="libraries/widgets/interactive/css/aceeditor.css"></link>
+<link rel=stylesheet href="./assets/css/box_styles.css"></link>
+<link rel=stylesheet href="./assets/css/ribbons.css"></link>
+<link rel=stylesheet href="./assets/css/style.css"></link>
+
+
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script>
+  <script data-main="libraries/frameworks/io2012/js/slides"
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+
+    <!-- LOGO SLIDE -->
+      <slide class="nobackground">
+    <article class="flexbox vcenter">
+      <span>
+        <img width='500px' src="assets/img/BigLogo_MDS.png">
+      </span>
+    </article>
+  </slide>
+    <slide class="title-slide segue nobackground">
+  <!-- <aside class="gdbar">
+    <img src="assets/img/uham_logo.png">
+  </aside>-->
+  <div style="position: absolute; left: 50px; top: 50px; z-index:100">
+      <img src = "assets/img/uham_logo.png" height="67" width="200">
+  </div>
+  <hgroup class="auto-fadein">
+    <h1 style="width: 650px;">Statistik und Programmierung mit R</h1>
+    <h2>5-R Pakete &amp; Data wrangling-1.Import</h2>
+    <p>Saskia Otto &amp; Christian Möllmann<br/>B-MARSYS 6, SoSe2019</p>
+  </hgroup>
+  <article></article>
+</slide>
+
+
+    <!-- SLIDES -->
+    <slide class="segue" style="background:#1874CD;">
+  <hgroup>
+    <h1>Data wrangling mit tidyverse</h1>
+  </hgroup>
+  <article>
+    <p><img src="img/Data_science_1a.png" style="height:150px;border:0;position: absolute; left: 900px; top: 50px" </img> </p>
+
+  </article>
+</slide>
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>Data wrangling ist</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>ein Konzept, welches von <strong>Hadley Wickam</strong> eingeführt wurde</li>
+<li>die Kunst, <strong>Daten in R so zu laden und umzuformen</strong>, dass damit leicht die anschl. Visualisierung und Modellierung erfolgen kann</li>
+<li>besteht aus <strong>drei</strong> Hauptkompontenen:</li>
+</ul>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>Data wrangling ist</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>ein Konzept, welches von <strong>Hadley Wickam</strong> eingeführt wurde</li>
+<li>die Kunst, <strong>Daten in R so zu laden und umzuformen</strong>, dass damit leicht die anschl. Visualisierung und Modellierung erfolgen kann</li>
+<li>besteht aus <strong>drei</strong> Hauptkomponenten:</li>
+</ul>
+
+<div class="img-with-text" style="position: absolute; left: 125px; top: 300px">
+    <img src="img/Data_wrangling.png" alt="" width=800px/>
+ <p><span class="source-img" style = "float:right">Quelle: 
+    <a href='http://r4ds.had.co.nz/wrangle-intro.html' title=''>R for Data Science</a> von Wickam & Grolemund, 2017 (lizensiert unter <a href='https://creativecommons.org/licenses/by-nc-nd/3.0/us/' title=''>CC-BY-NC-ND 3.0 US</a>)</span></p>
+</div>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Tidy (uni)verse</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Ist eine Sammlung von <strong>R Paketen</strong> die die <strong>gleiche Philosophie</strong> teilen und auf einander abgestimmt sind:</p>
+
+<p><img src="img/Tidyverse_packages.png" style="width:1000px;border:0;position: absolute; left: 50px; top: 200px" </img> </p>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-5" style="background:;">
+  <hgroup>
+    <h2>Warum tidyverse?</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><strong>Konsistenz</strong>, z.B.
+
+<ul>
+<li>alle <em>stringr</em> Funktionen nehmen einen string als erstes Argument</li>
+<li>die meisten Funktionen nehmen den data frame als erstes Argument (piping)</li>
+</ul></li>
+<li>Es zwingt zu einer <strong>sorgfältigen Vorgehensweise</strong></li>
+<li><strong>Synergien</strong> zwischen verschiedenen Paketen/tools</li>
+<li>Implementiert <strong>einfache Lösungen</strong> zu allgemeinen Problemen</li>
+<li><strong>Smartere default</strong> Einstellungen
+
+<ul>
+<li>z.B. <code>utils::write.csv(row.names = FALSE)</code>, <code>readr::write_csv()</code></li>
+</ul></li>
+<li>Funktionen sind oft wesentlich <strong>schneller</strong> (viele sind mit Rcpp umgesetzt)</li>
+<li>Zunahme an Paketen die das tidyverse Konzept implementieren </li>
+</ul>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-6" style="background:;">
+  <article data-timings="">
+    <p>Am einfachsten ist die Installation (und das spätere Laden) eines einzigen Paketes, welches alle weiteren installiert</p>
+
+<pre><code class="r">install.packages(&quot;tidyverse&quot;)
+</code></pre>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="segue" style="background:grey;">
+  <hgroup>
+    <h1>Moment ... ein kurzer Abstecher zu Paketen</h1>
+  </hgroup>
+  <article>
+    <p><img src="img/Data_science_1a.png" style="height:150px;border:0;position: absolute; left: 900px; top: 50px" </img> </p>
+
+  </article>
+</slide>
+<slide class="" id="slide-8" style="background:;">
+  <hgroup>
+    <h2>Pakete</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Werden von der <strong>R community</strong> geschrieben</li>
+<li>Sind  eine Sammlung von
+
+<ul>
+<li> R <strong>Funktionen</strong>, </li>
+<li>der <strong>Dokumentation</strong> die beschreibt wie die Funktionen anzuwenden sind, </li>
+<li>und oft auch <strong>Beispieldaten</strong></li>
+</ul></li>
+<li>Die offizielle <a href="https://cran.r-project.org/">CRAN package Webseite</a> enthält aktuell <strong>13700 (!)</strong> Pakete (Feb 10, 2019)</li>
+</ul>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-9" style="background:;">
+  <hgroup>
+    <h2>Installation (EINMALIG)</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Die &#39;akzeptierte&#39; Version kann von CRAN direkt über die Funktion <code>install.packages()</code> installiert werden</p>
+
+<pre><code class="r">install.packages(&quot;package_name&quot;)
+</code></pre>
+
+<p>oder via R Studio:</p>
+
+<p><img src="img/Package_installation.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" width="500px" style="display: block; margin: auto;" /></p>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-10" style="background:;">
+  <hgroup>
+    <h2>Paket laden (JEDE SESSION)</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Ein Paket muss für jede session geladen werden, um auf die Funktionen zugreifen zu können. Dazu gibt es <code>library()</code> und <code>require()</code>. R überprüft dann erstmal, ob dieses Paket auch installiert ist. Der Unterschied zwischen beiden Funktionen liegt nur in dem was passiert, wenn das Paket nicht vorhanden ist:</p>
+
+<pre><code class="r">library(any_package) # library(&quot;any_package&quot;) would also work
+</code></pre>
+
+<pre><code>## Error in library(any_package): there is no package called &#39;any_package&#39;
+</code></pre>
+
+<pre><code class="r">require(any_package) # require(&quot;any_package&quot;)
+</code></pre>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-11" style="background:;">
+  <hgroup>
+    <h2>Paket laden (JEDE SESSION)</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Wenn ein spezifisches Paket geladen wird, wird es als default zum Suchpfad hinzugefügt:
+<img src="img/Search_paths.png" title="plot of chunk unnamed-chunk-6" alt="plot of chunk unnamed-chunk-6" width="500px" style="display: block; margin: auto;" /></p>
+
+<p><span class="source-img" style="position: absolute; left: 625px; top: 340px">modifiziert von 
+    <a href='http://adv-r.had.co.nz/Environments.html' title=''>Advanced R</a> von H. Wickam, 2014</span></p>
+
+<ul>
+<li>Um eine Funktion aufrufen zu können, muss R sie erstmal finden. Dafür sucht R als <strong>erstes</strong> in der <strong>globalen Umgebung</strong>.</li>
+<li>Anschl. sucht R im <strong>Suchpfad</strong>, also der Liste aller geladenen Pakete, und zwar in einer spezifischen Reihenfolge.</li>
+<li>Wenn R mehrere Funktionen mit dem gleichen Namen findet, verwendet es die Funktion des <strong>zuletzt</strong> geladenen Pakets.</li>
+</ul>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-12" style="background:;">
+  <hgroup>
+    <h2>Paket laden (Forts.)</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Du kannst Dir den Suchpfad explizit anzeigen lassen mit <code>search()</code>.</p>
+
+<pre><code class="r">search()
+</code></pre>
+
+<pre><code class="no-highlight">##  [1] &quot;.GlobalEnv&quot;        &quot;tools:rstudio&quot;     &quot;package:stats&quot;    
+##  [4] &quot;package:graphics&quot;  &quot;package:grDevices&quot; &quot;package:utils&quot;    
+##  [7] &quot;package:datasets&quot;  &quot;package:methods&quot;   &quot;Autoloads&quot;        
+## [10] &quot;package:base&quot;
+</code></pre>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-13" style="background:;">
+  <article data-timings="">
+    <p>Nach dem Laden von tidyverse</p>
+
+<pre><code class="r">library(tidyverse) 
+</code></pre>
+
+<p>siehst Du 8 weitere tidyverse Pakete die geladen wurden.
+Du siehst auch einen <strong>Konflikt mit Funktionsnamen</strong> (<code>filter()</code> und <code>lag()</code> existieren in 2 Paketen)!</p>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-14" style="background:;">
+  <article data-timings="">
+    <p>Lass uns den Suchpfad noch mal anzeigen:</p>
+
+<pre><code class="r">search()
+</code></pre>
+
+<pre><code class="no-highlight">##  [1] &quot;.GlobalEnv&quot;        &quot;package:forcats&quot;   &quot;package:stringr&quot;  
+##  [4] &quot;package:dplyr&quot;     &quot;package:purrr&quot;     &quot;package:readr&quot;    
+##  [7] &quot;package:tidyr&quot;     &quot;package:tibble&quot;    &quot;package:ggplot2&quot;  
+## [10] &quot;package:tidyverse&quot; &quot;tools:rstudio&quot;     &quot;package:stats&quot;    
+## [13] &quot;package:graphics&quot;  &quot;package:grDevices&quot; &quot;package:utils&quot;    
+## [16] &quot;package:datasets&quot;  &quot;package:methods&quot;   &quot;Autoloads&quot;        
+## [19] &quot;package:base&quot;
+</code></pre>
+
+<p>9 Pakete wurden insgesamt hinzugefügt (direkt nach der globalen Umgebung).</p>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-15" style="background:;">
+  <hgroup>
+    <h2>Wie kann man Pakete aus der Session inaktivieren?</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Pakete werden aus dem Suchpfad einfach mit <code>detach()</code> entfernt</p>
+
+<pre><code class="r">detach(packagename)
+</code></pre>
+
+<p>Oder indem die Box neben dem Paketnamen im &#39;Packages&#39; pane entfernt wird:</p>
+
+<p><img src="img/Detach_packages.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" width="900px" style="display: block; margin: auto auto auto 0;" /></p>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-16" style="background:;">
+  <hgroup>
+    <h2>Information zu Paketen</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Wenn Du <code>?packagename</code>  (z.B. <code>?tidyverse</code>) aufrufst, erhältst Du weitere Informationen zu den Kernaufgaben des Pakets kann und welche Funktionen verfügbar sind. Manchmal gibt es auch Weblinks für weitere Infos.</li>
+<li>Aktuellere Pakete haben auch sog. &quot;Vignetten&quot;, welche ein kleines Tutorial darstellen. Diese können aufgerufen werden über <code>vignette(&quot;packagename&quot;)</code>.</li>
+<li>Machmal gibt es sogar mehrere Vignetten. Für einen Überblick verwende <code>browseVignettes(&quot;packagename&quot;)</code>.</li>
+</ul>
+
+<pre><code class="r">vignette(&quot;dplyr&quot;)
+browseVignettes(&quot;dplyr&quot;)
+</code></pre>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="segue" style="background:#EEC900;">
+  <hgroup>
+    <h1>Aufgabe</h1>
+  </hgroup>
+  <article>
+    
+  </article>
+</slide>
+<slide class="" id="slide-18" style="background:#EEC900;">
+  <hgroup>
+    <h1>Quiz 1: Funktionskonflikte</h1>
+  </hgroup>
+  <article data-timings="">
+    
+<div class="quiz quiz-single well ">
+  <p>Aus welchem der beiden Pakete wird R die Funktionen <code>filter()</code> und <code>lag()</code> verwenden?</p>
+
+<ol>
+<li><em>dplyr</em></li>
+<li>stats</li>
+</ol>
+
+  <button class="quiz-submit btn btn-primary">Submit</button>
+  <button class="quiz-toggle-hint btn btn-info">Show Hint</button>
+  <button class="quiz-show-answer btn btn-success">Show Answer</button>
+  <button class="quiz-clear btn btn-danger">Clear</button>
+  
+  <div class="quiz-explanation">
+  <p><code>dplyr</code> wurde NACH<code>stats</code> (welches mit jeder session automatisch von R geladen wird) geladen, daher kommt <code>dplyr</code> auch vor <code>stats</code> im Suchpfad (Position 2 vs 10).</p>
+
+</div>
+</div>
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="segue" style="background:#1874CD;">
+  <hgroup>
+    <h1>Zurück zu data wrangling: 1. Import</h1>
+  </hgroup>
+  <article>
+    <p><img src="img/Data_science_1a.png" style="height:150px;border:0;position: absolute; left: 900px; top: 50px" </img> 
+<img src="img/Data_wrangling_a.png" style="width:450px;border:0;position: absolute; left: 125px; top: 200px" </img> </p>
+
+  </article>
+</slide>
+<slide class="" id="slide-20" style="background:;">
+  <hgroup>
+    <h2>Datenquellen</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Excel Dateien (.xls / .xlsx)</li>
+<li>Komma-separierte Werte (.csv) --&gt; gebräuchlichster Dateityp</li>
+<li>Textdateien (.txt)</li>
+<li>NetCDF (Network Common Data Form)</li>
+<li>Relationale Datenbanken (MySQL, PostgreSQL, etc.)</li>
+<li>URLs</li>
+<li>und viele weitere ...</li>
+</ul>
+
+<div class="alert alert-green" style="margin-left: auto; margin-right: auto;">
+  Meistens wirst Du flache Dateien haben die Du in R laden willst (sprich ohne <strong>interne Hierarchien</strong> and Beziehungen wie in Datenbanken).
+</div>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-21" style="background:;">
+  <hgroup>
+    <h2>Import aus Excel</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="img/Excel_import.png" title="plot of chunk unnamed-chunk-13" alt="plot of chunk unnamed-chunk-13" width="850px" style="display: block; margin: auto;" /></p>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-22" style="background:;">
+  <hgroup>
+    <h2>Basisfunktionen zum Importieren</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li><code>read.table(file, header = TRUE, sep = &quot;&quot;)</code></li>
+<li><code>read.csv(file, header = TRUE, sep = &quot;&quot;)</code></li>
+</ul>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-23" style="background:;">
+  <hgroup>
+    <h2>Importfunktionen in &#39;readr&#39;</h2>
+  </hgroup>
+  <article data-timings="">
+    <div style="position: absolute; left: 950px; top: 25px; z-index:100">
+    <img src="img/Logo_readr.png" alt="" width=75px height=75px>
+</div>
+
+<ul>
+<li>Die meisten readr’s Funktionen sind zum Importieren flacher Dateien in data frames bzw. sog. <code>tibbles</code>:
+
+<ul>
+<li><code>read_delim()</code>: liest Dateien mit <strong>jedem delimiter</strong> ein.</li>
+<li><code>read_csv()</code>: <strong>Komma</strong>-separierte Dateien (.csv)</li>
+<li><code>read_csv2()</code>: <strong>Semikolon</strong>-separierte Dateien (.csv) - Gebräuchlich wenn das Komma als Dezimalzeichen verwendet wird</li>
+<li><code>read_tsv()</code>: <strong>Tab</strong> delimited Dateien (.txt files)</li>
+<li>weitere <code>read_table()</code>,<code>read_fwf()</code>, <code>read_log()</code></li>
+</ul></li>
+</ul>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-24" style="background:;">
+  <article data-timings="">
+    <ul>
+<li>All diese Funktionen haben eine ähnliche oder die gleiche Syntax: </li>
+</ul>
+
+<p><img src="img/Readr_functions.png" title="plot of chunk unnamed-chunk-14" alt="plot of chunk unnamed-chunk-14" width="1000px" style="display: block; margin: auto auto auto 0;" /></p>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-25" style="background:;">
+  <hgroup>
+    <h2>Eine kurze Demonstration von read_csv mit inline csv Dateien</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Inline csv Dateien sind praktisch zum Experimentieren und um nachvollziehbare Beispiele zu erstellen: </p>
+
+<pre><code class="r">read_csv(&quot;a,b,c
+1,2,3
+4,5,6&quot;)
+</code></pre>
+
+<pre><code class="no-highlight">## # A tibble: 2 x 3
+##       a     b     c
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1     1     2     3
+## 2     4     5     6
+</code></pre>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-26" style="background:;">
+  <hgroup>
+    <h3>Import optimieren - Zeilen auslassen</h3>
+  </hgroup>
+  <article data-timings="">
+    <p>Die ersten n Zeilen mit Metadaten am Anfang einer Datei können ausgelassen werden mit <strong>skip = n</strong>:</p>
+
+<pre><code class="r">read_csv(&quot;The first line of metadata
+  The second line of metadata
+  x,y,z
+  1,2,3&quot;, skip = 2)
+</code></pre>
+
+<pre><code class="no-highlight">## # A tibble: 1 x 3
+##       x     y     z
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1     1     2     3
+</code></pre>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-27" style="background:;">
+  <hgroup>
+    <h3>Import optimieren - Spaltennamen</h3>
+  </hgroup>
+  <article data-timings="">
+    
+<div style='float:left;width:48%;'>
+  <p>Wenn die Datei keine Spaltennamen enthält: <strong>col_names = FALSE</strong>; R vergibt dann die Labels X1 bis Xn:</p>
+
+<pre><code class="r">read_csv(&quot;1,2,3
+  4,5,6&quot;, col_names = FALSE)
+</code></pre>
+
+<pre><code class="no-highlight">## # A tibble: 2 x 3
+##      X1    X2    X3
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1     1     2     3
+## 2     4     5     6
+</code></pre>
+
+</div>
+<div style='float:right;width:48%;'>
+  <p>Du kannst auch einen gesonderten <strong>character Vektor</strong> als col_names übergeben:</p>
+
+<pre><code class="r">read_csv(&quot;1,2,3
+  4,5,6&quot;, col_names = c(&quot;x&quot;, &quot;y&quot;, &quot;z&quot;))
+</code></pre>
+
+<pre><code class="no-highlight">## # A tibble: 2 x 3
+##       x     y     z
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1     1     2     3
+## 2     4     5     6
+</code></pre>
+
+</div>
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-28" style="background:;">
+  <hgroup>
+    <h3>Import optimieren - NAs</h3>
+  </hgroup>
+  <article data-timings="">
+    <p>Das Argument <code>na</code> spezifiziert die Werte, die fehlende Werte repräsentieren (z.B. sind -999 oder -9999 oft Platzhalter):</p>
+
+<div style='float:left;width:48%;'>
+  <pre><code class="r">read_csv(&quot;a,b,c
+  1,2,.&quot;, na = &quot;.&quot;)
+</code></pre>
+
+<pre><code class="no-highlight">## # A tibble: 1 x 3
+##       a     b c    
+##   &lt;dbl&gt; &lt;dbl&gt; &lt;lgl&gt;
+## 1     1     2 NA
+</code></pre>
+
+</div>
+<div style='float:right;width:48%;'>
+  <pre><code class="r">read_csv(&quot;a,b,c
+  1,-9999,2&quot;, na = &quot;-9999&quot;)
+</code></pre>
+
+<pre><code class="no-highlight">## # A tibble: 1 x 3
+##       a b         c
+##   &lt;dbl&gt; &lt;lgl&gt; &lt;dbl&gt;
+## 1     1 NA        2
+</code></pre>
+
+</div>
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-29" style="background:;">
+  <hgroup>
+    <h2>Was sind eigentlich <strong>tibbles</strong>?</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Das <strong>&#39;tibble&#39;</strong> Paket ermöglicht eine neue <strong>&#39;tbl_df&#39;</strong> Klasse (das &#39;tibble&#39;), welche striktere Qualitätschecks bereitstellt und sich besser formatieren lässt als die traditionellen data frames. </li>
+<li>Alle Funktionen für data frames funktionieren auch bei tibbles</li>
+<li>Alle tidyverse Pakete generieren tibbles automatisch</li>
+<li>Mehr zu tibbles gibt es hier: <code>vignette(&quot;tibble&quot;)</code>.</li>
+</ul>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-30" style="background:;">
+  <hgroup>
+    <h2>tibbles erstellen</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Geschieht automatisch beim Import mit <em>readr</em></li>
+<li>Konvertiere einen bestehenden data frame mit <code>tibble::as_tibble(your_dataframe)</code></li>
+</ul>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-31" style="background:;">
+  <hgroup>
+    <h2>tibbles erstellen</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Geschieht automatisch beim Import mit <em>readr</em></li>
+<li>Konvertiere einen bestehenden data frame mit <code>tibble::as_tibble(your_dataframe)</code></li>
+</ul>
+
+<pre><code class="r">iris_tbl &lt;- as_tibble(iris)
+# Vergleiche mit
+class(iris)
+</code></pre>
+
+<pre><code class="no-highlight">## [1] &quot;data.frame&quot;
+</code></pre>
+
+<pre><code class="r">class(iris_tbl)
+</code></pre>
+
+<pre><code class="no-highlight">## [1] &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;
+</code></pre>
+
+<p>Wie Du siehst, <strong>iris_tbl</strong> vererbt auch die <code>data.frame</code> Klasse, hat jetzt aber eine zusätzliche <code>tbl_df</code> Klasse.</p>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-32" style="background:;">
+  <hgroup>
+    <h2>tibbles erstellen (Forts.)</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Oder Du erstellst einen neuen tibble mit individuellen Vektoren mit <code>tibble()</code></li>
+</ul>
+
+<pre><code class="r">tibble(x = 1:5, y = 1, z = x ^ 2 + y)
+</code></pre>
+
+<pre><code class="no-highlight">## # A tibble: 5 x 3
+##       x     y     z
+##   &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1     1     1     2
+## 2     2     1     5
+## 3     3     1    10
+## 4     4     1    17
+## 5     5     1    26
+</code></pre>
+
+<p>Inputs von kürzeren Vektoren werden wieder automatisch recycled!</p>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-33" style="background:;">
+  <hgroup>
+    <h2>Printen von tibbles</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Jede Spalte gibt ihren <strong>Datentyp</strong> mit an</li>
+<li>Nur die ersten <strong>10 Zeilen</strong> und alle Spalten die <strong>in den Screen passen</strong> werden angezeigt → einfacheres handling bei großen Datensätzen</li>
+<li>Wenn Du die Anzeige der Zeilen (<strong>n</strong>) und Spalten (<strong>width</strong>) ändern willst, benutze <code>print()</code> und ändere die Argumente:</li>
+</ul>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-34" style="background:;">
+  <hgroup>
+    <h2>Printen von tibbles</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Jede Spalte gibt ihren <strong>Datentyp</strong> mit an</li>
+<li>Nur die ersten <strong>10 Zeilen</strong> und alle Spalten die <strong>in den Screen passen</strong> werden angezeigt → einfacheres handling bei großen Datensätzen</li>
+<li>Wenn Du die Anzeige der Zeilen (<strong>n</strong>) und Spalten (<strong>width</strong>) ändern willst, benutze <code>print()</code> und ändere die Argumente:</li>
+</ul>
+
+<pre><code class="r">print(iris_tbl, n = 2, width = Inf)  # = Inf zeigt alle Spalten
+</code></pre>
+
+<pre><code class="no-highlight">## # A tibble: 150 x 5
+##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+##          &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;  
+## 1          5.1         3.5          1.4         0.2 setosa 
+## 2          4.9         3            1.4         0.2 setosa 
+## # … with 148 more rows
+</code></pre>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-35" style="background:;">
+  <hgroup>
+    <h2>Überblick an weiteren Funktionen:</h2>
+  </hgroup>
+  <article data-timings="">
+    <div class="img-with-text" style="position: absolute; left: 200px; top: 100px">
+    <img src="img/Cheatsheet_readr.png" alt="" width=675px/>
+ <p><span class="source-img" style = "float:right">
+ Das cheat sheet ist frei verfügbar auf 
+ <a href='https://www.rstudio.com/resources/cheatsheets/' title=''>https://www.rstudio.com/resources/cheatsheets/</a></span></p>
+</div>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-36" style="background:;">
+  <hgroup>
+    <h2>Andere Datentypen</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Wenn Du weitere Datentypen hast die Du importieren willst, könnten folgende Pakete nützlich sein:</p>
+
+<ul>
+<li><strong>haven</strong> - SPSS, Stata, und SAS Dateien</li>
+<li><strong>readxl</strong> - Excel Dateien (.xls und .xlsx)</li>
+<li><strong>ncdf4</strong> or <strong>tidync</strong> - NetCDF (Network Common Data Form)</li>
+<li><strong>DBI</strong> - Datenbanken</li>
+<li><strong>jsonlite</strong> - json</li>
+<li><strong>xml2</strong> - XML</li>
+<li><strong>httr</strong> - Web APIs</li>
+</ul>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-37" style="background:;">
+  <hgroup>
+    <h2>Roadmap</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="img/Roadmap.png" title="plot of chunk unnamed-chunk-24" alt="plot of chunk unnamed-chunk-24" width="1000px" style="display: block; margin: auto;" /></p>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="segue" style="background:#FF8C00;">
+  <hgroup>
+    <h1>Reale Daten zum Importieren</h1>
+  </hgroup>
+  <article>
+    <p><img src="img/Data_science_1a.png" style="height:150px;border:0;position: absolute; left: 900px; top: 50px" </img> </p>
+
+  </article>
+</slide>
+<slide class="" id="slide-39" style="background:;">
+  <article data-timings="">
+    <p><img src="img/ICES_webpage.png" title="plot of chunk unnamed-chunk-25" alt="plot of chunk unnamed-chunk-25" width="800px" style="display: block; margin: auto;" /></p>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-40" style="background:;">
+  <article data-timings="">
+    <p><img src="img/ICES_data_portal.png" title="plot of chunk unnamed-chunk-26" alt="plot of chunk unnamed-chunk-26" width="800px" style="display: block; margin: auto;" /></p>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-41" style="background:;">
+  <article data-timings="">
+    <p><img src="img/ICES_oceanographic_data.png" title="plot of chunk unnamed-chunk-27" alt="plot of chunk unnamed-chunk-27" width="800px" style="display: block; margin: auto;" /></p>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-42" style="background:;">
+  <article data-timings="">
+    <p><img src="img/ICES_download.png" title="plot of chunk unnamed-chunk-28" alt="plot of chunk unnamed-chunk-28" width="900px" style="display: block; margin: auto;" /></p>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="segue" style="background:#EEC900;">
+  <hgroup>
+    <h1>Aufgabe</h1>
+  </hgroup>
+  <article>
+    
+  </article>
+</slide>
+<slide class="" id="slide-44">
+<hgroup>
+  <h2>Import der ICES Daten</h2>
+</hgroup>
+<article data-timings="">
+  <div style="background-color:#F5F5F5; text-align:left; vertical-align: middle; padding:20px 47px;">
+    <ol>
+<li>Öffne die Datei &quot;1111473b.csv&quot; in einem Editor Deiner Wahl und schau Dir den Inhalt an.</li>
+<li>Lade die Datei in R ein:
+
+<ul>
+<li>Setze zuerst das Arbeitsverzeichnis auf den Ordner, der die Datei einhält. </li>
+<li>Wähle die passende Importfunktion und die Argumenteinstellungen anhand des Inhalts und Dateiformats.</li>
+<li>Speichere die Daten unter dem Objektnamen <code>hydro</code> ab.</li>
+</ul></li>
+</ol>
+
+  </div>
+  <footer>
+    <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+      <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+    </div>
+    <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+      <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+      font-style: italic; top: 610px; ">B-MARSYS6</a>
+    </div>
+  </footer>
+</article>
+<!-- Presenter Notes -->
+</slide>
+
+<style>
+#slide-44 {
+  background-color: #EEC900;
+}
+</style>
+<slide class="" id="slide-45">
+<hgroup>
+  <h2>Import der ICES Daten</h2>
+</hgroup>
+<article data-timings="">
+  <div style="background-color:#F5F5F5; text-align:left; vertical-align: middle; padding:20px 47px;">
+    <p>3.Inspiziere <code>hydro</code>. </p>
+
+<ul>
+<li>Was für eine Datenstruktur hat <code>hydro</code>?</li>
+<li>Stimmen die Dimensionen?</li>
+<li>Was ist mit den leeren Elementen passiert (z.B. Zeile 127-137)</li>
+<li>Stimmen die Datentypen pro Zeile?</li>
+</ul>
+
+<p>4.Da die Spaltennamen ungeeignet sind, wähle hier passendere Namen.</p>
+
+  </div>
+  <footer>
+    <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+      <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+    </div>
+    <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+      <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+      font-style: italic; top: 610px; ">B-MARSYS6</a>
+    </div>
+  </footer>
+</article>
+<!-- Presenter Notes -->
+</slide>
+
+<style>
+#slide-45 {
+  background-color: #EEC900;
+}
+</style>
+<slide class="" id="slide-46" style="background:;">
+  <hgroup>
+    <h2>Lass uns der Roadmap folgen:</h2>
+  </hgroup>
+  <article data-timings="">
+    <h3>1.Schritt: Öffne die Dateien in einem Editor und überprüfe den Inhalt</h3>
+
+<p>In RStudio:</p>
+
+<ul class = "build incremental">
+<li>Gehe zum &#39;Files&#39; pane.</li>
+<li>Navigiere Dich zum Ordner mit der &#39;1111473b.csv&#39; Datei</li>
+<li>Klicke auf die Datei und wähle &quot;View file&quot; aus → jetzt wird die Datei im Source&#39; pane sichtbar</li>
+</ul>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-47" style="background:;">
+  <article data-timings="">
+    <p><img src="img/Editor_data_check.png" title="plot of chunk unnamed-chunk-29" alt="plot of chunk unnamed-chunk-29" width="800px" style="display: block; margin: auto;" /></p>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-48" style="background:;">
+  <hgroup>
+    <h2>Lass uns der Roadmap folgen:</h2>
+  </hgroup>
+  <article data-timings="">
+    <h3>2.Schritt: Lade die Daten in R ein</h3>
+
+<ul>
+<li>Stelle sicher, dass das <strong>Arbeitsverzeichnis</strong> (working directory) richtig ist. </li>
+<li>Das <strong>falsche</strong> Arbeitsverzeichnis ist die <strong>häufigste Ursache</strong> für Fehlermeldungen!</li>
+</ul>
+
+<pre><code class="r">hydro &lt;- read_csv(&quot;data/1111473b.csv&quot;)
+</code></pre>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-49" style="background:;">
+  <hgroup>
+    <h2>Überprüfe die Struktur</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">class(hydro)
+</code></pre>
+
+<pre><code class="no-highlight">## [1] &quot;spec_tbl_df&quot; &quot;tbl_df&quot;      &quot;tbl&quot;         &quot;data.frame&quot;
+</code></pre>
+
+<pre><code class="r">dim(hydro)
+</code></pre>
+
+<pre><code class="no-highlight">## [1] 30012    11
+</code></pre>
+
+<pre><code class="r">print(hydro, n = 2)
+</code></pre>
+
+<pre><code class="no-highlight">## # A tibble: 30,012 x 11
+##   Cruise Station Type  `yyyy-mm-ddThh:mm`  `Latitude [degr…
+##   &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt; &lt;dttm&gt;                         &lt;dbl&gt;
+## 1 ????   0247    B     2015-02-17 09:54:00               55
+## 2 ????   0247    B     2015-02-17 09:54:00               55
+## # … with 3.001e+04 more rows, and 6 more variables: `Longitude
+## #   [degrees_east]` &lt;dbl&gt;, `Bot. Depth [m]` &lt;chr&gt;, `PRES [db]` &lt;dbl&gt;,
+## #   `TEMP [deg C]` &lt;dbl&gt;, `PSAL [psu]` &lt;dbl&gt;, `DOXY [ml/l]` &lt;dbl&gt;
+</code></pre>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-50" style="background:;">
+  <hgroup>
+    <h2>Überprüfung von leeren Feldern</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">hydro[127:136, ]
+</code></pre>
+
+<pre><code class="no-highlight">## # A tibble: 10 x 11
+##    Cruise Station Type  `yyyy-mm-ddThh:mm`  `Latitude [degr…
+##    &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt; &lt;dttm&gt;                         &lt;dbl&gt;
+##  1 ????   1612    B     2015-09-23 11:20:00             55.2
+##  2 ????   1612    B     2015-09-23 11:20:00             55.2
+##  3 ????   1612    B     2015-09-23 11:20:00             55.2
+##  4 ????   1612    B     2015-09-23 11:20:00             55.2
+##  5 ????   1612    B     2015-09-23 11:20:00             55.2
+##  6 ????   1612    B     2015-09-23 11:20:00             55.2
+##  7 ????   1612    B     2015-09-23 11:20:00             55.2
+##  8 ????   1612    B     2015-09-23 11:20:00             55.2
+##  9 ????   1612    B     2015-09-23 11:20:00             55.2
+## 10 ????   1612    B     2015-09-23 11:20:00             55.2
+## # … with 6 more variables: `Longitude [degrees_east]` &lt;dbl&gt;, `Bot. Depth
+## #   [m]` &lt;chr&gt;, `PRES [db]` &lt;dbl&gt;, `TEMP [deg C]` &lt;dbl&gt;, `PSAL
+## #   [psu]` &lt;dbl&gt;, `DOXY [ml/l]` &lt;dbl&gt;
+</code></pre>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-51" style="background:;">
+  <hgroup>
+    <h2>Überprüfung der Datentypen</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r"># str(hydro) 
+# besser bei tibbles:
+glimpse(hydro)
+</code></pre>
+
+<pre><code class="no-highlight">## Observations: 30,012
+## Variables: 11
+## $ Cruise                     &lt;chr&gt; &quot;????&quot;, &quot;????&quot;, &quot;????&quot;, &quot;????&quot;, &quot;????…
+## $ Station                    &lt;chr&gt; &quot;0247&quot;, &quot;0247&quot;, &quot;0247&quot;, &quot;0247&quot;, &quot;0247…
+## $ Type                       &lt;chr&gt; &quot;B&quot;, &quot;B&quot;, &quot;B&quot;, &quot;B&quot;, &quot;B&quot;, &quot;B&quot;, &quot;B&quot;, &quot;B…
+## $ `yyyy-mm-ddThh:mm`         &lt;dttm&gt; 2015-02-17 09:54:00, 2015-02-17 09:5…
+## $ `Latitude [degrees_north]` &lt;dbl&gt; 55.00, 55.00, 55.00, 55.00, 55.00, 55…
+## $ `Longitude [degrees_east]` &lt;dbl&gt; 13.3000, 13.3000, 13.3000, 13.3000, 1…
+## $ `Bot. Depth [m]`           &lt;chr&gt; &quot;0048&quot;, &quot;0048&quot;, &quot;0048&quot;, &quot;0048&quot;, &quot;0048…
+## $ `PRES [db]`                &lt;dbl&gt; 0.2, 1.0, 5.0, 10.0, 15.0, 20.0, 25.0…
+## $ `TEMP [deg C]`             &lt;dbl&gt; 3.57, 3.57, 3.56, 3.56, 3.55, 3.55, 3…
+## $ `PSAL [psu]`               &lt;dbl&gt; 9.029, 9.006, 9.008, 9.053, 9.055, 9.…
+## $ `DOXY [ml/l]`              &lt;dbl&gt; 6.76, 6.71, 6.47, 6.17, 6.03, 6.03, 6…
+</code></pre>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-52" style="background:;">
+  <hgroup>
+    <h2>Ändere die Spaltennamen</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Um das spätere Manipulieren der Daten zu vereinfachen, nutze kurze Namen:</p>
+
+<pre><code class="r">names(hydro) &lt;- c(&quot;cruise&quot;, &quot;station&quot;, &quot;type&quot;, &quot;date_time&quot;,
+  &quot;lat&quot;, &quot;long&quot;, &quot;depth&quot;, &quot;pres&quot;, &quot;temp&quot;, &quot;psal&quot;, &quot;doxy&quot;)
+</code></pre>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="segue" style="background:#1874CD;">
+  <hgroup>
+    <h1>Daten speichern und exportieren</h1>
+  </hgroup>
+  <article>
+    
+  </article>
+</slide>
+<slide class="" id="slide-54" style="background:;">
+  <hgroup>
+    <h2>Daten als R Objekte speichern</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Du kannst Dein tibble oder data frame als <code>.R</code> Objekt abspeichern und jederzeit wieder laden mit <code>save(your_tibble, &quot;filename&quot;)</code> und <code>load(&quot;filename&quot;)</code>:</p>
+
+<pre><code class="r">save(hydro, file = &quot;Mein_erstes_Objekt.R&quot;)
+# Wir löschen hydro aus der globalen Umgebung
+rm(hydro)
+hydro
+load(file = &quot;Mein_erstes_Objekt.R&quot;)
+hydro # jetzt sollte es wieder da sein
+</code></pre>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-55" style="background:;">
+  <hgroup>
+    <h2>Exportieren von Daten</h2>
+  </hgroup>
+  <article data-timings="">
+    <ul>
+<li>Wenn Du Deine Daten exportieren willst um sie dann mit anderen Programmen zu bearbeiten, verwende am besten das gleiche Format wie beim Import.</li>
+<li>Die meisten Importfunktionen haben ein Äquivalent zum Exportieren:
+
+<ul>
+<li><code>read_delim()</code> --&gt; <strong><code>write_delim()</code></strong></li>
+<li><code>read_csv()</code> --&gt; <strong><code>write_csv()</code></strong></li>
+<li><code>read_tsv()</code> --&gt; <strong><code>write_tsv()</code></strong></li>
+<li>andere Funktionen: <strong><code>write_excel_csv()</code></strong></li>
+</ul></li>
+</ul>
+
+<pre><code class="r">write_csv(hydro, &quot;Mein_hydro_Datensatz.csv&quot;)
+</code></pre>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-56" style="background:;">
+  <hgroup>
+    <h2>Übersicht an neuen Funktionen</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><code>install.packages()</code>, <code>library()</code>, <code>require()</code>, <code>search()</code>, <code>detach()</code>, <code>vignette()</code>, <code>browseVignettes()</code>,</p>
+
+<p><code>read_delim()</code>, <code>read_csv()</code>, <code>read_csv2()</code>, <code>read_tsv()</code>, <code>read_table()</code>, <code>read_fwf()</code>, <code>read_log()</code>,</p>
+
+<p><code>tibble()</code>, <code>as_tibble()</code>, <code>print()</code>, <code>save()</code>, <code>load()</code>,</p>
+
+<p><code>write_delim()</code>, <code>write_csv()</code>, <code>write_tsv()</code>, <code>write_excel_csv()</code></p>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="segue" style="background:#CD2626;">
+  <hgroup>
+    <h1>Wie fühlst Du Dich?</h1>
+  </hgroup>
+  <article>
+    
+  </article>
+</slide>
+<slide class="" id="slide-58">
+  <hgroup>
+    <h2>Total konfus?</h2>
+  </hgroup>
+  <article class = 'flexbox vcenter'>
+    <p><img src="img/Comic_confused.png" title="plot of chunk unnamed-chunk-37" alt="plot of chunk unnamed-chunk-37" width="400px" style="display: block; margin: auto;" /></p>
+
+<p>Lese nach im Kapitel <a href="https://r4ds.had.co.nz/tibbles.html">10 Tibbles</a> und <a href="https://r4ds.had.co.nz/data-import.html">11 Data import</a> in &#39;R for Data Science&#39;.</p>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-59">
+  <hgroup>
+    <h2>Total gelangweilt?</h2>
+  </hgroup>
+  <article class = 'flexbox vcenter'>
+    <p><img src="img/Comic_bored.png" title="plot of chunk unnamed-chunk-38" alt="plot of chunk unnamed-chunk-38" width="800px" style="display: block; margin: auto auto auto 0;" /></p>
+
+<p>Dann probiere mal eigene Daten zu importieren und in R zu explorieren.</p>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="" id="slide-60" style="background:;">
+  <hgroup>
+    <h2>Absolut zufrieden?</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Dann hol Dir einen Kaffee, lehn Dich zurück und genieße den Rest des Tages...!</p>
+
+<p><img src="img/Comic_hammock.png" title="plot of chunk unnamed-chunk-39" alt="plot of chunk unnamed-chunk-39" width="600px" style="display: block; margin: auto;" /></p>
+
+    <footer>
+      <div style="position: absolute; left: 60px; top: 645px; z-index:100">
+        <a class="home" href="https://mareds.github.io/r_course/"><img src="assets/img/mds_logo_128px.png" alt="Home button" style="width:35px;height:35px;border:0;"></a>
+      </div>
+      <div style="position: absolute; left: 100px; top: 650px; z-index:100">
+        <a href='https://mareds.github.io/bmarsys6/' style="font-size: 15px;
+        font-style: italic; top: 610px; ">B-MARSYS6</a>
+      </div>
+    </footer>
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+<slide class="thank-you-slide segue" id="slide-61">
+  <footer>
+    <div style="position: absolute; left: 50px; top: 50px; z-index:100">
+        <img src = "assets/img/uham_logo.png" height="67" width="200">
+    </div>
+  </footer>
+  <article>
+    <h1 style="padding-top: 120px;"> </h1>
+    <p style="font-size: 15px; position: absolute; left: 125px; top: 480px; z-index:100;">
+    <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+      <img alt="Creative Commons License" style="border-width:0"
+        src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a><br>
+        Diese Arbeit ist lizensiert unter der <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+        Creative Commons Attribution-ShareAlike 4.0 International License </a><br>mit Ausnahme externer
+        Materialien gekennzeichnet durch die <i>source:</i> Angabe. <br>
+        <b>Bild auf Titel- und Abschlussfolie:</b> <br>
+        Infrarot-Satellitenbild des Larsen C Schelfeis in der Antarktik <br>
+        USGS/NASA Landsat: <a href="https://landsat.visibleearth.nasa.gov/view.php?id=90481">
+        A Crack of Light in the Polar Dark</a>, Landsat 8 - TIRS, 17.Juni 2017 <br>
+        (unter CC0 Lizenz)
+    </p>
+  </article>
+</slide>
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Data wrangling mit tidyverse'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Data wrangling ist'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Data wrangling ist'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Tidy (uni)verse'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='Warum tidyverse?'>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='NA'>
+         6
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=7 title='Moment ... ein kurzer Abstecher zu Paketen'>
+         7
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=8 title='Pakete'>
+         8
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=9 title='Installation (EINMALIG)'>
+         9
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=10 title='Paket laden (JEDE SESSION)'>
+         10
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=11 title='Paket laden (JEDE SESSION)'>
+         11
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=12 title='Paket laden (Forts.)'>
+         12
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=13 title='NA'>
+         13
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=14 title='NA'>
+         14
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=15 title='Wie kann man Pakete aus der Session inaktivieren?'>
+         15
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=16 title='Information zu Paketen'>
+         16
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=17 title='Aufgabe'>
+         17
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=18 title='Quiz 1: Funktionskonflikte'>
+         18
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=19 title='Zurück zu data wrangling: 1. Import'>
+         19
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=20 title='Datenquellen'>
+         20
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=21 title='Import aus Excel'>
+         21
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=22 title='Basisfunktionen zum Importieren'>
+         22
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=23 title='Importfunktionen in &#39;readr&#39;'>
+         23
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=24 title='NA'>
+         24
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=25 title='Eine kurze Demonstration von read_csv mit inline csv Dateien'>
+         25
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=26 title='Import optimieren - Zeilen auslassen'>
+         26
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=27 title='Import optimieren - Spaltennamen'>
+         27
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=28 title='Import optimieren - NAs'>
+         28
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=29 title='Was sind eigentlich <strong>tibbles</strong>?'>
+         29
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=30 title='tibbles erstellen'>
+         30
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=31 title='tibbles erstellen'>
+         31
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=32 title='tibbles erstellen (Forts.)'>
+         32
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=33 title='Printen von tibbles'>
+         33
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=34 title='Printen von tibbles'>
+         34
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=35 title='Überblick an weiteren Funktionen:'>
+         35
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=36 title='Andere Datentypen'>
+         36
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=37 title='Roadmap'>
+         37
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=38 title='Reale Daten zum Importieren'>
+         38
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=39 title='NA'>
+         39
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=40 title='NA'>
+         40
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=41 title='NA'>
+         41
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=42 title='NA'>
+         42
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=43 title='Aufgabe'>
+         43
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=44 title='Import der ICES Daten'>
+         44
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=45 title='Import der ICES Daten'>
+         45
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=46 title='Lass uns der Roadmap folgen:'>
+         46
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=47 title='NA'>
+         47
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=48 title='Lass uns der Roadmap folgen:'>
+         48
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=49 title='Überprüfe die Struktur'>
+         49
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=50 title='Überprüfung von leeren Feldern'>
+         50
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=51 title='Überprüfung der Datentypen'>
+         51
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=52 title='Ändere die Spaltennamen'>
+         52
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=53 title='Daten speichern und exportieren'>
+         53
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=54 title='Daten als R Objekte speichern'>
+         54
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=55 title='Exportieren von Daten'>
+         55
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=56 title='Übersicht an neuen Funktionen'>
+         56
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=57 title='Wie fühlst Du Dich?'>
+         57
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=58 title='Total konfus?'>
+         58
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=59 title='Total gelangweilt?'>
+         59
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=60 title='Absolut zufrieden?'>
+         60
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=61 title='NA'>
+         61
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script
+      src="https://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  <script src="libraries/widgets/quiz/js/jquery.quiz.js"></script>
+<script src="libraries/widgets/quiz/js/mustache.min.js"></script>
+<script src="libraries/widgets/quiz/js/quiz-app.js"></script>
+<script src="libraries/widgets/bootstrap/js/bootstrap.min.js"></script>
+<script src="libraries/widgets/bootstrap/js/bootbox.min.js"></script>
+<script src="libraries/widgets/interactive/js/ace/js/ace.js"></script>
+<script src="libraries/widgets/interactive/js/opencpu-0.5.js"></script>
+<script src="libraries/widgets/interactive/js/interactive.js"></script>
+
+  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+  </script>
+  <!-- following line slidify default but is outdated -->
+  <!-- <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+  
+  <!-- accoding to https://www.mathjax.org/#gettingstarted  this is the line of code to
+    change the version number in the src attribute any time the version of MathJax changes
+    (Although this refers to a specific version, the latest.js file will load the most current version regardless of the one you specified.)
+  -->
+    <script type="text/javascript" src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+  
+  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> -->
+  <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+<script>  
+  $(function (){ 
+    $("#example").popover(); 
+    $("[rel='tooltip']").tooltip(); 
+  });  
+  </script>  
+  <!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
